@@ -12,6 +12,7 @@ import cn.yihu.microboot.service.goods.AppGoodsService;
 import cn.yihu.microboot.util.Results;
 import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
+import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -57,4 +58,9 @@ public class AppGoodsController {
 	}
 	
 
+	@ApiOperation(value="根据商品二级分类ID获取商品列表")
+	@GetMapping("/queryGoodsByCateId/{cateId}")
+	public Results<List<Goods>> queryGoodsByCateId(@PathVariable("cateId")String cateId) {
+		return appGoodsService.queryGoodsByCateId(cateId);
+	}
 }
