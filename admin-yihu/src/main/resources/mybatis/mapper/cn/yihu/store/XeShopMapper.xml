@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.store.XeShopMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.store.XeShop">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shopname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shopaddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="metroaddress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shoptel" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shopcoord" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, shopname, shopaddress, metroaddress, shoptel, shopcoord
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_shop
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from xe_shop
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.store.XeShop">
+    insert into xe_shop (id, shopname, shopaddress, 
+      metroaddress, shoptel, shopcoord
+      )
+    values (#{id,jdbcType=VARCHAR}, #{shopname,jdbcType=VARCHAR}, #{shopaddress,jdbcType=VARCHAR}, 
+      #{metroaddress,jdbcType=VARCHAR}, #{shoptel,jdbcType=VARCHAR}, #{shopcoord,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.store.XeShop">
+    insert into xe_shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shopname != null">
+        shopname,
+      </if>
+      <if test="shopaddress != null">
+        shopaddress,
+      </if>
+      <if test="metroaddress != null">
+        metroaddress,
+      </if>
+      <if test="shoptel != null">
+        shoptel,
+      </if>
+      <if test="shopcoord != null">
+        shopcoord,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null">
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopaddress != null">
+        #{shopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="metroaddress != null">
+        #{metroaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shoptel != null">
+        #{shoptel,jdbcType=VARCHAR},
+      </if>
+      <if test="shopcoord != null">
+        #{shopcoord,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.store.XeShop">
+    update xe_shop
+    <set>
+      <if test="shopname != null">
+        shopname = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopaddress != null">
+        shopaddress = #{shopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="metroaddress != null">
+        metroaddress = #{metroaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shoptel != null">
+        shoptel = #{shoptel,jdbcType=VARCHAR},
+      </if>
+      <if test="shopcoord != null">
+        shopcoord = #{shopcoord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.store.XeShop">
+    update xe_shop
+    set shopname = #{shopname,jdbcType=VARCHAR},
+      shopaddress = #{shopaddress,jdbcType=VARCHAR},
+      metroaddress = #{metroaddress,jdbcType=VARCHAR},
+      shoptel = #{shoptel,jdbcType=VARCHAR},
+      shopcoord = #{shopcoord,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+     <select id="count_all" resultType="java.lang.Integer">
+    select count(id)
+    from xe_shop
+  </select>
+  
+  <select id="findpage" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_shop
+    limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="findall" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_shop
+  </select>
+</mapper>

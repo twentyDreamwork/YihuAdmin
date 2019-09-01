@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+
+<!--      导入属性配置 -->
+     <properties resource="\mybatis\generator\datasource.properties"></properties>
+ 
+ <!--     指定特定数据库的jdbc驱动jar包的位置 -->
+     <classPathEntry location="${db.driverLocation}"/>
+    <context id="default" targetRuntime="MyBatis3">  
+   
+         <!-- optional，旨在创建class时，对注释进行控制 -->
+         <commentGenerator>
+             <property name="suppressDate" value="true"/>
+             <property name="suppressAllComments" value="true"/>
+         </commentGenerator>
+       
+        <!--jdbc的数据库连接 -->
+         <jdbcConnection
+                 driverClass="${db.driverClassName}"
+                 connectionURL="${db.url}"
+                 userId="${db.username}"
+                 password="${db.password}">
+         </jdbcConnection>
+  
+    <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和   
+            NUMERIC 类型解析为java.math.BigDecimal -->  
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false" />  
+        </javaTypeResolver>  
+  
+    
+         
+  <javaModelGenerator targetPackage="cn.yihu.microboot.vo.store" targetProject="yihu/src/main/java">
+          
+             <property name="enableSubPackages" value="false"/>
+           
+             <property name="constructorBased" value="true"/>
+             
+             <property name="trimStrings" value="true"/>
+            
+             <property name="immutable" value="false"/>
+         </javaModelGenerator>
+ 
+       
+         <sqlMapGenerator targetPackage="mybatis.mapper.cn.yihu.store" targetProject="yihu/src/main/resources">
+             <property name="enableSubPackages" value="false"/>
+         </sqlMapGenerator>
+
+         <javaClientGenerator type="XMLMAPPER" targetPackage="cn.yihu.microboot.dao.store" targetProject="yihu/src/main/java">
+            
+             <property name="enableSubPackages" value="false" />
+         </javaClientGenerator>
+     
+         <!-- <table tableName="system_organizetree" domainObjectName="Organizetree" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>         -->
+         <table tableName="xe_cart" domainObjectName="XeCart" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_classify" domainObjectName="XeClassify" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_collect" domainObjectName="XeCollect" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_comment" domainObjectName="XeComment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_goods" domainObjectName="XeGoods" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_goods_detail" domainObjectName="XeGoodsDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_location" domainObjectName="XeLocation" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_open_bind" domainObjectName="XeOpenBind" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_order" domainObjectName="XeOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_shop" domainObjectName="XeShop" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="xe_user_address" domainObjectName="XeUserAddress" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    </context>  
+</generatorConfiguration>  

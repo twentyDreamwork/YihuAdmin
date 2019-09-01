@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.store.XeGoodsMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.store.XeGoods">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="shop_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cate_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="loca_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="main_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sub_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="old_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="buy" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="goods_img" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, shop_id, cate_id, loca_id, main_title, sub_title, price, old_price, buy, goods_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_goods
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from xe_goods
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.store.XeGoods">
+    insert into xe_goods (id, shop_id, cate_id, 
+      loca_id, main_title, sub_title, 
+      price, old_price, buy, 
+      goods_img)
+    values (#{id,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}, #{cateId,jdbcType=VARCHAR}, 
+      #{locaId,jdbcType=VARCHAR}, #{mainTitle,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{oldPrice,jdbcType=DECIMAL}, #{buy,jdbcType=INTEGER}, 
+      #{goodsImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.store.XeGoods">
+    insert into xe_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="cateId != null">
+        cate_id,
+      </if>
+      <if test="locaId != null">
+        loca_id,
+      </if>
+      <if test="mainTitle != null">
+        main_title,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
+      </if>
+      <if test="buy != null">
+        buy,
+      </if>
+      <if test="goodsImg != null">
+        goods_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="cateId != null">
+        #{cateId,jdbcType=VARCHAR},
+      </if>
+      <if test="locaId != null">
+        #{locaId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainTitle != null">
+        #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="buy != null">
+        #{buy,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImg != null">
+        #{goodsImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.store.XeGoods">
+    update xe_goods
+    <set>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="cateId != null">
+        cate_id = #{cateId,jdbcType=VARCHAR},
+      </if>
+      <if test="locaId != null">
+        loca_id = #{locaId,jdbcType=VARCHAR},
+      </if>
+      <if test="mainTitle != null">
+        main_title = #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="buy != null">
+        buy = #{buy,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImg != null">
+        goods_img = #{goodsImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.store.XeGoods">
+    update xe_goods
+    set shop_id = #{shopId,jdbcType=VARCHAR},
+      cate_id = #{cateId,jdbcType=VARCHAR},
+      loca_id = #{locaId,jdbcType=VARCHAR},
+      main_title = #{mainTitle,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      old_price = #{oldPrice,jdbcType=DECIMAL},
+      buy = #{buy,jdbcType=INTEGER},
+      goods_img = #{goodsImg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+     <select id="count_all" resultType="java.lang.Integer">
+    select count(id)
+    from xe_goods
+  </select>
+  
+  <select id="findpage" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_goods
+    limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="findall" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_goods
+  </select>
+</mapper>

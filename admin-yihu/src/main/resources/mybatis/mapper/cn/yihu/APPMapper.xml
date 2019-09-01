@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.APPMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.APP">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Platform" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="AppPackage" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Link" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Integral" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DownloadNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, Name, Icon, Platform, AppPackage, Link, Type, Integral, DownloadNum, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from app
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.APP">
+    insert into app (id, Name, Icon, 
+      Platform, AppPackage, Link, 
+      Type, Integral, DownloadNum, 
+      Remark)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=INTEGER}, #{apppackage,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{integral,jdbcType=VARCHAR}, #{downloadnum,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.APP">
+    insert into app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="icon != null">
+        Icon,
+      </if>
+      <if test="platform != null">
+        Platform,
+      </if>
+      <if test="apppackage != null">
+        AppPackage,
+      </if>
+      <if test="link != null">
+        Link,
+      </if>
+      <if test="type != null">
+        Type,
+      </if>
+      <if test="integral != null">
+        Integral,
+      </if>
+      <if test="downloadnum != null">
+        DownloadNum,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="apppackage != null">
+        #{apppackage,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadnum != null">
+        #{downloadnum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.APP">
+    update app
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        Icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        Platform = #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="apppackage != null">
+        AppPackage = #{apppackage,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        Link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        Integral = #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadnum != null">
+        DownloadNum = #{downloadnum,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.APP">
+    update app
+    set Name = #{name,jdbcType=VARCHAR},
+      Icon = #{icon,jdbcType=VARCHAR},
+      Platform = #{platform,jdbcType=INTEGER},
+      AppPackage = #{apppackage,jdbcType=VARCHAR},
+      Link = #{link,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=INTEGER},
+      Integral = #{integral,jdbcType=VARCHAR},
+      DownloadNum = #{downloadnum,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="CountApp" resultType="java.lang.Integer">
+    select count(*)
+    from app
+    where Platform = #{param1,jdbcType=INTEGER}
+  </select>
+  <select id="findbyPlatform" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    where Platform = #{param1,jdbcType=INTEGER}
+    limit #{param2,jdbcType=INTEGER},#{param3,jdbcType=INTEGER}
+  </select>
+  <update id="addappnum" parameterType="java.lang.String">
+    update app
+    set DownloadNum = DownloadNum+1
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="CountAllApp" resultType="java.lang.Integer">
+    select count(*)
+    from app
+  </select>
+  <select id="findAllApp" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
+  </select>
+</mapper>

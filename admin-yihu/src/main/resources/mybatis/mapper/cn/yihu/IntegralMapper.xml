@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.IntegralMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.Integral">
+    <constructor>
+      <idArg column="Id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UserId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="total" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="NowIntegral" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="Money" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="CreateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Creater" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Updater" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, UserId, total, NowIntegral, Money, CreateTime, Creater, UpdateTime, Updater
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from integral
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from integral
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.Integral">
+    insert into integral (Id, UserId, total, 
+      NowIntegral, Money, CreateTime, 
+      Creater, UpdateTime, Updater
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, 
+      #{nowintegral,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.Integral">
+    insert into integral
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="nowintegral != null">
+        NowIntegral,
+      </if>
+      <if test="money != null">
+        Money,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="creater != null">
+        Creater,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updater != null">
+        Updater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="nowintegral != null">
+        #{nowintegral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.Integral">
+    update integral
+    <set>
+      <if test="userid != null">
+        UserId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="nowintegral != null">
+        NowIntegral = #{nowintegral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        Money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        Creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        Updater = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.Integral">
+    update integral
+    set UserId = #{userid,jdbcType=VARCHAR},
+      total = #{total,jdbcType=INTEGER},
+      NowIntegral = #{nowintegral,jdbcType=INTEGER},
+      Money = #{money,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      Creater = #{creater,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Updater = #{updater,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByUsername" parameterType="java.util.Map">
+    update integral
+    <set>
+        NowIntegral = NowIntegral+(Select integral from app where id=#{param2,jdbcType=VARCHAR})
+    </set>
+    where UserId=(Select id from User where username=#{param1,jdbcType=VARCHAR})
+  </update>
+  <delete id="deleteByUserId" parameterType="java.lang.String">
+    delete from integral
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

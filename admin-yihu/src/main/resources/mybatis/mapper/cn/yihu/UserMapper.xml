@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.User">
+    <constructor>
+      <idArg column="Id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UserId" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="wxid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UserName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Platform" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="InvitationCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MachineCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="Ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CreateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Creater" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Updater" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="Headimgurl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="memberid" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, UserId, wxid, UserName, Password, Phone, Platform, InvitationCode, MachineCode, Ip, 
+    CreateTime, Creater, UpdateTime, Updater,LoginTime,Headimgurl,member_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.User">
+    insert into user (Id, wxid, UserName, 
+      Password, Phone, Platform, 
+      InvitationCode, MachineCode, Ip, 
+      CreateTime, Creater, UpdateTime, 
+      Updater)
+    values (#{id,jdbcType=VARCHAR},  #{wxid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{platform,jdbcType=INTEGER}, 
+      #{invitationcode,jdbcType=VARCHAR}, #{machinecode,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}), #{Headimgurl,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="wxid != null">
+        wxid,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="phone != null">
+        Phone,
+      </if>
+      <if test="platform != null">
+        Platform,
+      </if>
+      <if test="invitationcode != null">
+        InvitationCode,
+      </if>
+      <if test="machinecode != null">
+        MachineCode,
+      </if>
+      <if test="ip != null">
+        Ip,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="creater != null">
+        Creater,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="updater != null">
+        Updater,
+      </if>
+       <if test="logintime != null">
+        LoginTime,
+      </if>
+      <if test="headimgurl != null">
+        Headimgurl,
+      </if>
+      <if test="memberid != null">
+        member_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="wxid != null">
+        #{wxid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="invitationcode != null">
+        #{invitationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="machinecode != null">
+        #{machinecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headimgurl != null">
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="memberid != null">
+        #{memberid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.User">
+    update user
+    <set>
+      <if test="wxid != null">
+        wxId = #{wxid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        Platform = #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="invitationcode != null">
+        InvitationCode = #{invitationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="machinecode != null">
+        MachineCode = #{machinecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        Ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        Creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        Updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        LoginTime = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headimgurl != null">
+        Headimgur = #{headimgurl,jdbcType=VARCHAR}
+      </if>
+      <if test="memberid != null">
+        member_id = #{memberid,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.User">
+    update user
+    set wxid = #{wxid,jdbcType=VARCHAR},
+      UserName = #{username,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Platform = #{platform,jdbcType=INTEGER},
+      InvitationCode = #{invitationcode,jdbcType=VARCHAR},
+      MachineCode = #{machinecode,jdbcType=VARCHAR},
+      Ip = #{ip,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      Creater = #{creater,jdbcType=VARCHAR},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      Updater = #{updater,jdbcType=VARCHAR},
+      LoginTime = #{logintime,jdbcType=TIMESTAMP},
+      Headimgur = #{headimgur,jdbcType=VARCHAR}
+      member_id = #{memberid,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByUser" parameterType="cn.yihu.microboot.vo.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where 
+       <if test="wxid != null">
+        wxid = #{wxid,jdbcType=VARCHAR}
+      </if>
+    
+  </select>
+  
+  <select id="selectByMachineCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from user
+    where MachineCode = #{machinecode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkMachineCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select 
+     count(*)
+    from user
+    where MachineCode = #{machinecode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUserAndPhone" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select 
+     <include refid="Base_Column_List" />
+    from user
+    where Phone = #{param2,jdbcType=VARCHAR} AND UserName = #{param1,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="countAllUser" resultType="java.lang.Integer">
+    select count(id)
+    from user
+  </select>
+  
+  <select id="findAllUser" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
+  </select>
+  <select id="checkwxid" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select 
+     count(*)
+    from user
+    where wxid = #{wxid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByWxid" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+     <include refid="Base_Column_List" />
+    from user
+    where wxid=#{wxid,jdbcType=VARCHAR}
+  </select>
+</mapper>

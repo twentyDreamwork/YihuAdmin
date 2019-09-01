@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.store.XeOpenBindMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.store.XeOpenBind">
+    <constructor>
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="openid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="open_distinguish" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="open_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.store.XeOpenBind">
+    insert into xe_open_bind (user_id, openid, open_distinguish, 
+      open_name)
+    values (#{userId,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{openDistinguish,jdbcType=INTEGER}, 
+      #{openName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.store.XeOpenBind">
+    insert into xe_open_bind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="openDistinguish != null">
+        open_distinguish,
+      </if>
+      <if test="openName != null">
+        open_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="openDistinguish != null">
+        #{openDistinguish,jdbcType=INTEGER},
+      </if>
+      <if test="openName != null">
+        #{openName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

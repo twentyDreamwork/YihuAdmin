@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.InvitedUserMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.InvitedUser">
+    <constructor>
+      <arg column="InvitationCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UserId" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.InvitedUser">
+    insert into invited_user (InvitationCode, UserId)
+    values (#{invitationcode,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.InvitedUser">
+    insert into invited_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invitationcode != null">
+        InvitationCode,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invitationcode != null">
+        #{invitationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <delete id="deleteByUserId" parameterType="java.lang.String">
+    delete from invited_user
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

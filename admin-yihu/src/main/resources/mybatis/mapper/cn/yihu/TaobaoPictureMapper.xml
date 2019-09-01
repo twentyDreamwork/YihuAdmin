@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yihu.microboot.dao.TaobaoPictureMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.TaobaoPicture">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LinkId" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PictureName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PictureLink" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, LinkId, PictureName, PictureLink
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from taobao_picture
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from taobao_picture
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.TaobaoPicture">
+    insert into taobao_picture (id, LinkId, PictureName, 
+      PictureLink)
+    values (#{id,jdbcType=VARCHAR}, #{linkid,jdbcType=VARCHAR}, #{picturename,jdbcType=VARCHAR}, 
+      #{picturelink,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.TaobaoPicture">
+    insert into taobao_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="linkid != null">
+        LinkId,
+      </if>
+      <if test="picturename != null">
+        PictureName,
+      </if>
+      <if test="picturelink != null">
+        PictureLink,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="linkid != null">
+        #{linkid,jdbcType=VARCHAR},
+      </if>
+      <if test="picturename != null">
+        #{picturename,jdbcType=VARCHAR},
+      </if>
+      <if test="picturelink != null">
+        #{picturelink,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.TaobaoPicture">
+    update taobao_picture
+    <set>
+      <if test="linkid != null">
+        LinkId = #{linkid,jdbcType=VARCHAR},
+      </if>
+      <if test="picturename != null">
+        PictureName = #{picturename,jdbcType=VARCHAR},
+      </if>
+      <if test="picturelink != null">
+        PictureLink = #{picturelink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.TaobaoPicture">
+    update taobao_picture
+    set LinkId = #{linkid,jdbcType=VARCHAR},
+      PictureName = #{picturename,jdbcType=VARCHAR},
+      PictureLink = #{picturelink,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="findbylink" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from taobao_picture
+    where LinkId = #{param1,jdbcType=INTEGER}
+  </select>
+</mapper>
