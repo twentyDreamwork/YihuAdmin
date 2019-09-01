@@ -28,6 +28,9 @@ public class Classify implements Serializable {
 	@ApiModelProperty("父id")
 	private String parentId;
 	
+	@ApiModelProperty("图标")
+	private String icons;
+	
 	@ApiModelProperty("父id")
 	private Integer depth;
 	

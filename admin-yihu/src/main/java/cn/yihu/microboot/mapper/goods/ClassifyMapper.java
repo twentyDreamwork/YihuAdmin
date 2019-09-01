@@ -18,8 +18,16 @@ public interface ClassifyMapper extends BaseMapper<Classify>{
 	 * 查询全部分类
 	 * @return
 	 */
-	@Select("select * from xe_classify ")
+	@Select("select * from xe_classify")
 	List<Classify> queryAllClassify();
+	
+	
+	/**
+	 * 查询商品一级分类
+	 * @return
+	 */
+	@Select("select * from xe_classify where parent_id='0'")
+	List<Classify> queryMajorClassify();
 	
 	
 	/**
