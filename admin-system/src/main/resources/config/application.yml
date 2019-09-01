@@ -21,9 +21,9 @@ spring:
   redis:
     #数据库索引
     database: 0
-    host: 47.75.98.77
+    host: 127.0.0.1
     port: 6379
-    password: dreamWork
+    password: 123456
     jedis:
       pool:
         #最大连接数

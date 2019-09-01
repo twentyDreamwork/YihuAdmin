@@ -7,23 +7,23 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import cn.yihu.microboot.dao.AppUserMapper;
 import cn.yihu.microboot.dao.IntegralMapper;
 import cn.yihu.microboot.dao.InvitedUserMapper;
-import cn.yihu.microboot.dao.UserMapper;
-import cn.yihu.microboot.service.UserService;
+import cn.yihu.microboot.service.AppUserService;
 import cn.yihu.microboot.util.DateTime;
 import cn.yihu.microboot.util.ShareCodeUtil;
 import cn.yihu.microboot.util.StrUtil;
 import cn.yihu.microboot.util.UUIDTool;
+import cn.yihu.microboot.vo.AppUser;
 import cn.yihu.microboot.vo.Page;
-import cn.yihu.microboot.vo.User;
 import net.sf.json.JSONObject;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class AppUserServiceImpl implements AppUserService{
 
 	@Resource
-	private UserMapper usermapper;
+	private AppUserMapper usermapper;
 	
 	@Resource
 	private IntegralMapper integermapper;
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
 		DateTime datetime=new DateTime();
 		Timestamp date=datetime.now().toSqlTimestamp();
 		String uuid=uuidtool.getUUID();
-		User user=new User();
+		AppUser user=new AppUser();
 		user.setId(uuid);
 		user.setWxid(register_json.getString("wxid"));
 		user.setUsername(register_json.getString("username"));
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService{
 
 	
 	@Override
-	public User find_user(String mc) {
+	public AppUser find_user(String mc) {
 		// TODO Auto-generated method stub
 		return usermapper.selectByMachineCode(mc);
 	}
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public User find_user_machineCode(String machinecode) {
+	public AppUser find_user_machineCode(String machinecode) {
 		// TODO Auto-generated method stub
 		return usermapper.selectByMachineCode(machinecode);
 	}
@@ -105,9 +105,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int UpdateUser(JSONObject login_json,User olduser) {
+	public int UpdateUser(JSONObject login_json,AppUser olduser) {
 		// TODO Auto-generated method stub
-		User user=new User();
+		AppUser user=new AppUser();
 		Date date=DateTime.now().toDate();
 		
 		user.setId(olduser.getId());
@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		Date date=DateTime.now().toDate();
 		UUIDTool uuid=new UUIDTool();
-		User user=new User();
+		AppUser user=new AppUser();
 		user.setId(uuid.getUUID());
 		user.setWxid(wxid);
 		user.setUsername(username);
@@ -168,7 +168,7 @@ public class UserServiceImpl implements UserService{
 			String MachineCode, String IP, String updater) {
 		// TODO Auto-generated method stub
 		Date date=DateTime.now().toDate();
-		User user=new User();
+		AppUser user=new AppUser();
 		user.setId(id);
 		user.setWxid(wxid);
 		user.setUsername(username);

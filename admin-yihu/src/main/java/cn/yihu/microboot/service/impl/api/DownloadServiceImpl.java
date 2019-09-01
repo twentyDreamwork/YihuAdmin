@@ -8,17 +8,17 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.dao.APPMapper;
+import cn.yihu.microboot.dao.AppUserMapper;
 import cn.yihu.microboot.dao.DownloadRecordMapper;
 import cn.yihu.microboot.dao.IntegralMapper;
-import cn.yihu.microboot.dao.UserMapper;
 import cn.yihu.microboot.service.api.DownloadService;
 import cn.yihu.microboot.util.DateTime;
 import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.APP;
+import cn.yihu.microboot.vo.AppUser;
 import cn.yihu.microboot.vo.DownloadRecord;
 import cn.yihu.microboot.vo.Integral;
 import cn.yihu.microboot.vo.Page;
-import cn.yihu.microboot.vo.User;
 import net.sf.json.JSONObject;
 
 @Service
@@ -34,7 +34,7 @@ public class DownloadServiceImpl implements DownloadService{
 	private DownloadRecordMapper downloadrecordmapper;
 	
 	@Resource
-	private UserMapper usermapper;
+	private AppUserMapper usermapper;
 	
 	@Override
 	public Page downloadlist(JSONObject json) {
@@ -68,7 +68,7 @@ public class DownloadServiceImpl implements DownloadService{
 		if(result==0) {
 			return 0;
 		}
-		User user=usermapper.selectByWxid(json.getString("wxid"));
+		AppUser user=usermapper.selectByWxid(json.getString("wxid"));
 		DownloadRecord downloadRecord=new DownloadRecord(uuid.getUUID(),null, user.getId(), json.getString("appid"), date, date, "system");
 		result=downloadrecordmapper.insertSelective(downloadRecord);
 		//result=integralmapper.updateByUsername(user.getUsername(),json.getString("appid"));
@@ -78,7 +78,7 @@ public class DownloadServiceImpl implements DownloadService{
 	@Override
 	public List<String> downloadrecordlist(JSONObject json) {
 		// TODO Auto-generated method stub
-		User user=usermapper.selectByWxid(json.getString("wxid"));
+		AppUser user=usermapper.selectByWxid(json.getString("wxid"));
 		List<String> record_list=downloadrecordmapper.selectByUserid(user.getId());
 		return record_list;
 	}

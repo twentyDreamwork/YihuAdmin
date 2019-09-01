@@ -21,9 +21,9 @@ import dream.work.modules.security.security.JwtAuthenticationEntryPoint;
 import dream.work.modules.security.security.JwtAuthorizationTokenFilter;
 import dream.work.modules.security.service.JwtUserDetailsService;
 
-@Configuration
+/*@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)*/
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -97,6 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 支付宝回调
                 .antMatchers("/api/aliPay/return").anonymous()
                 .antMatchers("/api/aliPay/notify").anonymous()
+                
 
                 // 系统监控
                 .antMatchers("/actuator/**").anonymous()

@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.yihu.microboot.service.AppUserService;
 import cn.yihu.microboot.service.IntegralService;
 import cn.yihu.microboot.service.InvitedUserService;
-import cn.yihu.microboot.service.UserService;
 import cn.yihu.microboot.service.api.ApiCheckService;
 import cn.yihu.microboot.util.controller.AbstractBaseController;
-import cn.yihu.microboot.vo.User;
+import cn.yihu.microboot.vo.AppUser;
 import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
 
 @Api(value = "用户管理")
 @RestController
 @RequestMapping("/api")
-public class UserController extends AbstractBaseController{
+public class AppUserController extends AbstractBaseController{
 
 	@Resource
-	private UserService userService;
+	private AppUserService userService;
 	
 	@Resource
 	private ApiCheckService apicheckService;
@@ -66,7 +66,7 @@ public class UserController extends AbstractBaseController{
 			return res_json;
 		}
 		//根据机器码进行查询
-		User user=userService.find_user_machineCode(now_json.getString("MachineCode"));
+		AppUser user=userService.find_user_machineCode(now_json.getString("MachineCode"));
 		String invitationCode=now_json.getString("InvitationCode");
 		String userid=user.getId();
 		//添加到邀请信息表
@@ -113,7 +113,7 @@ public class UserController extends AbstractBaseController{
 		 */
 		
 		//查询登录信息
-		User user=userService.find_user(now_json.getString("MachineCode").isEmpty()?null:now_json.getString("MachineCode"));
+		AppUser user=userService.find_user(now_json.getString("MachineCode").isEmpty()?null:now_json.getString("MachineCode"));
 		if(user==null) {
 			res_json.put("code", 200);
 			res_json.put("login", 0);

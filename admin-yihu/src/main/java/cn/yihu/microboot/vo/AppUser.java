@@ -2,7 +2,7 @@ package cn.yihu.microboot.vo;
 
 import java.util.Date;
 
-public class User {
+public class AppUser {
     private String id;
 
     private Long userid;
@@ -37,7 +37,7 @@ public class User {
     
     private String memberid;
 
-    public User(String id, Long userid, String wxid, String username, String password, String phone, Integer platform, String invitationcode, String machinecode, String ip, Date createtime, String creater, Date updatetime, String updater,Date logintime,String headimgurl,String memberid) {
+    public AppUser(String id, Long userid, String wxid, String username, String password, String phone, Integer platform, String invitationcode, String machinecode, String ip, Date createtime, String creater, Date updatetime, String updater,Date logintime,String headimgurl,String memberid) {
         this.id = id;
         this.userid = userid;
         this.wxid = wxid;
@@ -57,7 +57,7 @@ public class User {
         this.memberid = memberid;
     }
 
-    public User() {
+    public AppUser() {
         super();
     }
 

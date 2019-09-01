@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.yihu.microboot.service.UserService;
+import cn.yihu.microboot.service.AppUserService;
 import cn.yihu.microboot.service.api.TaobaoService;
 import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.TaobaoPicture;
@@ -27,7 +27,7 @@ import net.sf.json.JSONObject;
 public class TaobaoController {
 
 	@Resource
-	private UserService userService;
+	private AppUserService userService;
 	
 	@Resource
 	private TaobaoService taobaoService;

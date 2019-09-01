@@ -14,7 +14,9 @@ import dream.work.utils.SpringContextHolder;
  * @date 2018/11/15 9:20:19
  */
 @EnableAsync
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
+		})
 @EnableTransactionManagement
 @EnableWebSocketMessageBroker
 public class AppRun {

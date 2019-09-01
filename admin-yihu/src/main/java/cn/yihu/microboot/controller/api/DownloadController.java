@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.yihu.microboot.service.AppUserService;
 import cn.yihu.microboot.service.IntegralService;
 import cn.yihu.microboot.service.InvitedUserService;
-import cn.yihu.microboot.service.UserService;
 import cn.yihu.microboot.service.api.ApiCheckService;
 import cn.yihu.microboot.service.api.DownloadService;
 import cn.yihu.microboot.vo.Page;
@@ -27,7 +27,7 @@ import net.sf.json.JSONObject;
 public class DownloadController {
 
 	@Resource
-	private UserService userService;
+	private AppUserService userService;
 	
 	@Resource
 	private ApiCheckService apicheckService;

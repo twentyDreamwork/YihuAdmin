@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.yihu.microboot.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.User">
+<mapper namespace="cn.yihu.microboot.dao.AppUserMapper">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.AppUser">
     <constructor>
       <idArg column="Id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="UserId" javaType="java.lang.Long" jdbcType="BIGINT" />
@@ -19,7 +19,7 @@
       <arg column="Updater" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="UpdateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="Headimgurl" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="memberid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="member_id" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
@@ -29,15 +29,15 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from appuser
     where Id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from user
+    delete from appuser
     where Id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.yihu.microboot.vo.User">
-    insert into user (Id, wxid, UserName, 
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.AppUser">
+    insert into appuser (Id, wxid, UserName, 
       Password, Phone, Platform, 
       InvitationCode, MachineCode, Ip, 
       CreateTime, Creater, UpdateTime, 
@@ -48,8 +48,8 @@
       #{createtime,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{updater,jdbcType=VARCHAR}), #{Headimgurl,jdbcType=VARCHAR}
   </insert>
-  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.User">
-    insert into user
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.AppUser">
+    insert into appuser
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         Id,
@@ -152,8 +152,8 @@
     </trim>
     
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.User">
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.AppUser">
+    update appuser
     <set>
       <if test="wxid != null">
         wxId = #{wxid,jdbcType=VARCHAR},
@@ -203,8 +203,8 @@
     </set>
     where Id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.User">
-    update user
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.AppUser">
+    update appuser
     set wxid = #{wxid,jdbcType=VARCHAR},
       UserName = #{username,jdbcType=VARCHAR},
       Password = #{password,jdbcType=VARCHAR},
@@ -223,10 +223,10 @@
     where Id = #{id,jdbcType=VARCHAR}
   </update>
   
-  <select id="selectByUser" parameterType="cn.yihu.microboot.vo.User" resultMap="BaseResultMap">
+  <select id="selectByUser" parameterType="cn.yihu.microboot.vo.AppUser" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from appuser
     where 
        <if test="wxid != null">
         wxid = #{wxid,jdbcType=VARCHAR}
@@ -237,46 +237,46 @@
   <select id="selectByMachineCode" parameterType="java.lang.String" resultMap="BaseResultMap">
   	select 
     <include refid="Base_Column_List" />
-    from user
+    from appuser
     where MachineCode = #{machinecode,jdbcType=VARCHAR}
   </select>
   
   <select id="checkMachineCode" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select 
      count(*)
-    from user
+    from appuser
     where MachineCode = #{machinecode,jdbcType=VARCHAR}
   </select>
   
   <select id="selectByUserAndPhone" parameterType="java.util.Map" resultMap="BaseResultMap">
   	select 
      <include refid="Base_Column_List" />
-    from user
+    from appuser
     where Phone = #{param2,jdbcType=VARCHAR} AND UserName = #{param1,jdbcType=VARCHAR}
   </select>
   
   <select id="countAllUser" resultType="java.lang.Integer">
     select count(id)
-    from user
+    from appuser
   </select>
   
   <select id="findAllUser" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from appuser
     limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
   </select>
   <select id="checkwxid" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select 
      count(*)
-    from user
+    from appuser
     where wxid = #{wxid,jdbcType=VARCHAR}
   </select>
   
   <select id="selectByWxid" parameterType="java.lang.String" resultMap="BaseResultMap">
   	select 
      <include refid="Base_Column_List" />
-    from user
+    from appuser
     where wxid=#{wxid,jdbcType=VARCHAR}
   </select>
 </mapper>

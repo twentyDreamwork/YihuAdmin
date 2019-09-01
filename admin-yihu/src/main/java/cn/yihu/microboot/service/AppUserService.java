@@ -1,23 +1,23 @@
 package cn.yihu.microboot.service;
 
 import cn.yihu.microboot.vo.APP;
+import cn.yihu.microboot.vo.AppUser;
 import cn.yihu.microboot.vo.Page;
-import cn.yihu.microboot.vo.User;
 import net.sf.json.JSONObject;
 
-public interface UserService {
+public interface AppUserService {
 
 	public int add_user(JSONObject register_json);
 	
-	public User find_user(String machinecode);
+	public AppUser find_user(String machinecode);
 	
 	public boolean check_machineCode(String machinecode);
     
-	public User find_user_machineCode(String machinecode) ;
+	public AppUser find_user_machineCode(String machinecode) ;
 	
 	public int del_user(String userid);
 	
-	public int UpdateUser(JSONObject login_json,User user);
+	public int UpdateUser(JSONObject login_json,AppUser user);
 	
 	public int check_wxid(String wxid);
 	

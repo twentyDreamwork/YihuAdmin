@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.yihu.microboot.service.UserService;
+import cn.yihu.microboot.service.AppUserService;
 import cn.yihu.microboot.util.controller.AbstractBaseController;
 import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.Page;
@@ -16,10 +16,10 @@ import net.sf.json.JSONObject;
 @Api(value = "web app用户管理")
 @RestController
 @RequestMapping("/operation")
-public class AppUserController extends AbstractBaseController{
+public class WebAppUserController extends AbstractBaseController{
 	
 	@Resource
-	private UserService userservice;
+	private AppUserService userservice;
 
 	@RequestMapping(value = "/getappuserlist", method = RequestMethod.GET)
 	public JSONObject appuserList(String pageno) {
