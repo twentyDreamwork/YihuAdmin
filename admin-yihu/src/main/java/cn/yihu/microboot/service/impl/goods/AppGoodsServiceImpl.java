@@ -10,10 +10,12 @@ import cn.yihu.microboot.mapper.goods.ClassifyMapper;
 import cn.yihu.microboot.mapper.goods.GoodsMapper;
 import cn.yihu.microboot.service.goods.AppGoodsService;
 import cn.yihu.microboot.util.Results;
+import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
+import cn.yihu.microboot.vo.store.XeGoods;
 
 /**
  * 商品分类实现
@@ -68,6 +70,21 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 		return Results.resultSucc(goodsMapper.queryGoodsByCateId(cateId));
 	}
 
+	@Override
+	public Results<List<XeGoods>> queryhotGoods(Page page) {
+		// TODO Auto-generated method stub
+		int count = goodsMapper.count_hot();
+		page.setTotalCount(count);
+		return Results.resultSucc(goodsMapper.findHotGoodsPage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
+	}
+
+	@Override
+	public Results<List<XeGoods>> queryrecommendGoods(Page page) {
+		// TODO Auto-generated method stub
+		int count = goodsMapper.count_hot();
+		page.setTotalCount(count);
+		return Results.resultSucc(goodsMapper.findrecommendGoodsPage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
+	}
 
 	
 }
