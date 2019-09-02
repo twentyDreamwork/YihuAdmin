@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.mapper.goods.CarouselMapper;
 import cn.yihu.microboot.mapper.goods.ClassifyMapper;
+import cn.yihu.microboot.mapper.goods.GoodsMapper;
 import cn.yihu.microboot.service.goods.AppGoodsService;
 import cn.yihu.microboot.util.Results;
 import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
+import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
 
 /**
@@ -26,6 +28,8 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 	private ClassifyMapper classifyMapper;
 	@Autowired
 	private CarouselMapper carouselMapper;
+	@Autowired
+	private GoodsMapper goodsMapper;
 	
 	
 	@Override
@@ -57,6 +61,11 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 		appIndex.setCarousels(carouselMapper.queryAllCarousel());
 		appIndex.setMajorClassifys(classifyMapper.queryMajorClassify());
 		return Results.resultSucc(appIndex);
+	}
+
+	@Override
+	public Results<List<Goods>> queryGoodsByCateId(String cateId) {
+		return Results.resultSucc(goodsMapper.queryGoodsByCateId(cateId));
 	}
 
 

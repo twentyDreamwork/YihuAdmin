@@ -33,7 +33,7 @@ public class Carousel implements Serializable{
 	private String contents;
 	
 	@ApiModelProperty("备注")
-	private String remake;
+	private String remark;
 	
 	@ApiModelProperty("创建时间")
 	private Date createdTime;

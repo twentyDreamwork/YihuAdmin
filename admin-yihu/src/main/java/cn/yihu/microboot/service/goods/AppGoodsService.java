@@ -5,6 +5,7 @@ import java.util.List;
 import cn.yihu.microboot.util.Results;
 import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
+import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
 
 /**
@@ -51,4 +52,12 @@ public interface AppGoodsService {
 	 * @return
 	 */
 	Results<AppIndex> appIndex();
+	
+	
+	/**
+	 * 根据商品二级分类 查询商品
+	 * @param cateId
+	 * @return
+	 */
+	Results<List<Goods>> queryGoodsByCateId(String cateId);
 }
