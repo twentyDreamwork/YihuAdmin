@@ -45,7 +45,7 @@ public class AppGoodsController {
 	}
 	
 	@ApiOperation(value="根据父级ID获取商品分类")
-	@PostMapping("/queryAllClassifyByParentId/{parentId}")
+	@PostMapping("/queryAllClassifyByParentId")
 	public Results<List<Classify>> queryAllClassifyByParentId(@RequestBody JSONObject json) {
 		return appGoodsService.queryAllClassifyByParentId(json.getString("parentId"));
 	}
@@ -64,7 +64,7 @@ public class AppGoodsController {
 	
 
 	@ApiOperation(value="根据商品二级分类ID获取商品列表")
-	@PostMapping("/queryGoodsByCateId/{cateId}")
+	@PostMapping("/queryGoodsByCateId")
 	public Results<List<Goods>> queryGoodsByCateId(@RequestBody JSONObject json) {
 		return appGoodsService.queryGoodsByCateId(json.getString("cateId"));
 	}
