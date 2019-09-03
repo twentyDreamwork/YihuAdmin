@@ -1,40 +1,68 @@
 package cn.yihu.microboot.vo;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class AppUser {
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import cn.yihu.microboot.vo.goods.Goods;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@TableName("appuser")
+public class AppUser implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@ApiModelProperty("id")
     private String id;
 
+	@ApiModelProperty("用户id")
     private Long userid;
     
+	@ApiModelProperty("微信")
     private String wxid;
 
+	@ApiModelProperty("用户名")
     private String username;
 
+	@ApiModelProperty("密码")
     private String password;
 
+	@ApiModelProperty("手机")
     private String phone;
 
+	@ApiModelProperty("平台")
     private Integer platform;
 
+	@ApiModelProperty("邀请码")
     private String invitationcode;
 
+	@ApiModelProperty("机器码")
     private String machinecode;
 
+	@ApiModelProperty("ip")
     private String ip;
 
+	@ApiModelProperty("创建时间")
     private Date createtime;
 
+	@ApiModelProperty("创建人")
     private String creater;
 
+	@ApiModelProperty("更新时间")
     private Date updatetime;
 
+	@ApiModelProperty("更新人")
     private String updater;
     
+	@ApiModelProperty("登录时间")
     private Date logintime;
     
+	@ApiModelProperty("会员id")
     private String headimgurl;
     
+	@ApiModelProperty("商品主键")
     private String memberid;
 
     public AppUser(String id, Long userid, String wxid, String username, String password, String phone, Integer platform, String invitationcode, String machinecode, String ip, Date createtime, String creater, Date updatetime, String updater,Date logintime,String headimgurl,String memberid) {

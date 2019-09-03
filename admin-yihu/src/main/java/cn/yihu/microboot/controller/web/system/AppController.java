@@ -1,17 +1,23 @@
 package cn.yihu.microboot.controller.web.system;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.yihu.microboot.config.JSONInitialize;
 import cn.yihu.microboot.service.AppService;
 import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.util.controller.AbstractBaseController;
 import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Api(value = "Web app管理")
@@ -22,15 +28,16 @@ public class AppController extends AbstractBaseController{
 	@Resource
 	private AppService appSrvice;
 	
-	@RequestMapping(value = "/getapplist", method = RequestMethod.GET)
-	public JSONObject appList(String pageno) {
+	@ApiOperation(value="pc端获取app列表")
+	@GetMapping("/getapplist")
+	public JSONObject appList(String pageno,String size,String sort) {
 		JSONObject res_json = new JSONObject();
-		Page page=new Page<>(Integer.parseInt(pageno));
-		
-		page=appSrvice.findAllAppPage(page);
-		res_json=JSONObject.fromObject(page);
-		res_json.put("code", 200);
-		res_json.put("msg", "成功");
+		int count = appSrvice.count();
+		Page page=new Page<>(Integer.parseInt(pageno),Integer.parseInt(size),count);
+		List<APP> applist=appSrvice.findAllAppPage(page);
+		JSONArray jsonarray=JSONArray.fromObject(applist, new JSONInitialize().JSONDateConfig());
+		res_json.put("content", jsonarray);
+		res_json.put("totalElements", count);
 		return res_json;
 	}
 	

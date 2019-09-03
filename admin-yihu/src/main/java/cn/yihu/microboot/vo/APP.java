@@ -1,24 +1,45 @@
 package cn.yihu.microboot.vo;
 
-public class APP {
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@TableName("appuser")
+public class APP implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@ApiModelProperty("id")
     private String id;
 
+	@ApiModelProperty("app名称")
     private String name;
 
+	@ApiModelProperty("图标")
     private String icon;
 
+	@ApiModelProperty("平台")
     private Integer platform;
 
+	@ApiModelProperty("app包")
     private String apppackage;
 
+	@ApiModelProperty("链接")
     private String link;
 
+	@ApiModelProperty("类型")
     private Integer type;
 
+	@ApiModelProperty("积分")
     private String integral;
 
+	@ApiModelProperty("下载数")
     private Integer downloadnum;
 
+	@ApiModelProperty("描述")
     private String remark;
 
     public APP(String id, String name, String icon, Integer platform, String apppackage, String link, Integer type, String integral, Integer downloadnum, String remark) {

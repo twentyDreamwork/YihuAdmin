@@ -260,12 +260,13 @@
     from appuser
   </select>
   
-  <select id="findAllUser" parameterType="java.util.Map" resultMap="BaseResultMap">
+<!--   <select id="findAllUser" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from appuser
+    order by #{param3} #{param4}
     limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
-  </select>
+  </select> -->
   <select id="checkwxid" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select 
      count(*)

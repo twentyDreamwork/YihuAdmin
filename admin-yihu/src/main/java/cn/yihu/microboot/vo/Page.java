@@ -33,8 +33,8 @@ public class Page<E> implements Serializable {
 	private int pageNo = DEFAULT_PAGE_NO; // 页码
 	private int pageSize = DEFAULT_PAGE_SIZE; // 页面大小
 	private int pageNaviSize = DEFAULT_PAGE_NAV_SIZE; // 页码快速导航显示的个数
-	private int totalCount; // 总的记录数
-	private List<E> resultList; // 返回的查询结果集
+	private int totalElements; // 总的记录数
+	private List<E> content; // 返回的查询结果集
  
 	public Page() {
 		super();
@@ -54,6 +54,10 @@ public class Page<E> implements Serializable {
 	public Page(int pageNo, int pageSize, int pageNaviSize) {
 		this(pageNo, pageSize);
 		setPageNaviSize(pageNaviSize);
+	}
+	
+	public Page(int pageNo, int pageSize, int pageNaviSize,int totalElements) {
+		this(pageNo, pageSize,totalElements);
 	}
  
 	public int getPageNo() {
@@ -79,19 +83,19 @@ public class Page<E> implements Serializable {
 	}
  
 	public int getTotalCount() {
-		return totalCount;
+		return totalElements;
 	}
  
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+	public void setTotalCount(int totalElements) {
+		this.totalElements = totalElements;
 	}
  
 	public List<E> getResultList() {
-		return resultList;
+		return content;
 	}
  
-	public void setResultList(List<E> resultList) {
-		this.resultList = resultList;
+	public void setResultList(List<E> content) {
+		this.content = content;
 	}
  
 	public int getPageNaviSize() {
@@ -154,10 +158,10 @@ public class Page<E> implements Serializable {
 	 * @return
 	 */
 	public int getTotalPage() {
-		if (totalCount % pageSize > 0) {
-			return totalCount / pageSize + 1;
+		if (totalElements % pageSize > 0) {
+			return totalElements / pageSize + 1;
 		} else {
-			return totalCount / pageSize;
+			return totalElements / pageSize;
 		}
 	}
  

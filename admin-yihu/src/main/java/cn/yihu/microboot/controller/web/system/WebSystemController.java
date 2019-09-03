@@ -14,9 +14,9 @@ import cn.yihu.microboot.util.controller.AbstractBaseController;
 import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
 
-@Api(value = "web系统链接")
-@RestController
-@RequestMapping("/system")
+//@Api(value = "web系统链接")
+//@RestController
+//@RequestMapping("/system")
 public class WebSystemController extends AbstractBaseController{
 
 	@Resource
@@ -25,7 +25,7 @@ public class WebSystemController extends AbstractBaseController{
 	@Resource
 	private WebSystemService websystemService;
 	
-	@RequestMapping(value = "/weblogin", method = RequestMethod.POST)
+	//@RequestMapping(value = "/weblogin", method = RequestMethod.POST)
 	public JSONObject weblogin(@RequestBody JSONObject now_json) {
 		JSONObject res_json = new JSONObject();
 		int result = websystemService.CheckByUserNameAndPassword(now_json.getString("username"), now_json.getString("password"));

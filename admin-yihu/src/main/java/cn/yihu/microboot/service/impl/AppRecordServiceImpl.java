@@ -1,5 +1,7 @@
 package cn.yihu.microboot.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -16,13 +18,9 @@ public class AppRecordServiceImpl implements AppRecordService{
 	private DownloadRecordMapper downloadmapper;
 	
 	@Override
-	public Page findAllAppRecordPage(Page page) {
+	public List<DownloadRecord> findAllAppRecordPage(Page page) {
 		// TODO Auto-generated method stub
-		int count=downloadmapper.countAllRecord();
-		page.setTotalCount(count);
-		page.setResultList(downloadmapper.findAllRecord((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
-		
-		return page;
+		return downloadmapper.findAllRecord((page.getPageNo()-1)*page.getPageSize(),page.getPageSize());
 	}
 
 	@Override
@@ -41,6 +39,12 @@ public class AppRecordServiceImpl implements AppRecordService{
 	public int updateAppRecord(DownloadRecord dlr) {
 		// TODO Auto-generated method stub
 		return downloadmapper.updateByPrimaryKeySelective(dlr);
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return downloadmapper.countAllRecord();
 	}
 
 }

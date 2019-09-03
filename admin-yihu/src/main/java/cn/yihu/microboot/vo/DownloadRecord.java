@@ -1,20 +1,37 @@
 package cn.yihu.microboot.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DownloadRecord {
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@TableName("appuser")
+public class DownloadRecord implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@ApiModelProperty("id")
     private String id;
-
+	
+	@ApiModelProperty("自增id")
     private Integer recordid;
-
+	
+	@ApiModelProperty("用户id")
     private String userid;
 
+	@ApiModelProperty("appid")
     private String appid;
 
+	@ApiModelProperty("创建时间")
     private Date createtime;
 
+	@ApiModelProperty("更新时间")
     private Date updatetime;
 
+	@ApiModelProperty("更新者")
     private String updater;
 
     public DownloadRecord(String id, Integer recordid, String userid, String appid, Date createtime, Date updatetime, String updater) {

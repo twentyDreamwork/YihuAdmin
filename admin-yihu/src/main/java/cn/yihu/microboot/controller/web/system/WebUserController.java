@@ -15,9 +15,9 @@ import cn.yihu.microboot.vo.WebUser;
 import io.swagger.annotations.Api;
 import net.sf.json.JSONObject;
 
-@Api(value = "web用户管理")
-@RestController
-@RequestMapping("/system")
+//@Api(value = "web用户管理")
+//@RestController
+//@RequestMapping("/system")
 public class WebUserController extends AbstractBaseController{
 
 	@Resource
@@ -26,7 +26,7 @@ public class WebUserController extends AbstractBaseController{
 	@Resource
 	private WebSystemService websystemService;
 	
-	@RequestMapping(value = "/getuser", method = RequestMethod.GET)
+	//@RequestMapping(value = "/getuser", method = RequestMethod.GET)
 	public JSONObject UserList(String pageno) {
 		JSONObject res_json = new JSONObject();
 		JSONObject now_json = new JSONObject();
@@ -39,7 +39,7 @@ public class WebUserController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/deleteuser", method = RequestMethod.GET)
+	//@RequestMapping(value = "/deleteuser", method = RequestMethod.GET)
 	public JSONObject deleteUser(String userid) {
 		JSONObject res_json = new JSONObject();
 		int result=websystemService.deleteUser(userid);
@@ -55,7 +55,7 @@ public class WebUserController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/updateuser", method = RequestMethod.GET)
+	//@RequestMapping(value = "/updateuser", method = RequestMethod.GET)
 	public JSONObject updateUser(String userid,String username,String name,String password) {
 		JSONObject res_json = new JSONObject();
 		int result=websystemService.updateUser(userid,username, name, password);
@@ -71,7 +71,7 @@ public class WebUserController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/insertuser", method = RequestMethod.GET)
+	//@RequestMapping(value = "/insertuser", method = RequestMethod.GET)
 	public JSONObject insertUser(String username,String name,String password) {
 		JSONObject res_json = new JSONObject();
 		int result=websystemService.insertUser(username, name, password);

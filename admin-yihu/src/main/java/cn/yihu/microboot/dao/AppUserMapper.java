@@ -3,15 +3,17 @@ package cn.yihu.microboot.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import cn.yihu.microboot.vo.AppUser;
 import net.sf.json.JSONObject;
 
 @Mapper
-public interface AppUserMapper {
+public interface AppUserMapper extends BaseMapper<AppUser>{
     int deleteByPrimaryKey(String id);
 
-    int insert(AppUser record);
     
     int insertSelective(AppUser record);
 
@@ -31,7 +33,8 @@ public interface AppUserMapper {
     
     int countAllUser();
     
-    List<AppUser> findAllUser(int pageno,int pagesize);
+    @Select("select * from appuser limit #{pageno},#{pagesize}")
+    List<AppUser> findAllUser(int pageno,int pagesize,String in,String order);
     
     int checkwxid(String wxid);
     

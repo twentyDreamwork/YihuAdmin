@@ -2,6 +2,7 @@ package cn.yihu.microboot.controller.web.system;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.yihu.microboot.config.JSONInitialize;
 import cn.yihu.microboot.service.AppRecordService;
 import cn.yihu.microboot.util.DateTime;
 import cn.yihu.microboot.util.UUIDTool;
@@ -17,6 +19,8 @@ import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.DownloadRecord;
 import cn.yihu.microboot.vo.Page;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Api(value = "web app日志")
@@ -27,15 +31,16 @@ public class AppRecordController extends AbstractBaseController{
 	@Resource
 	private AppRecordService apprecordService;
 
+	@ApiOperation(value="pc端获取app下载日志列表")
 	@RequestMapping(value = "/getrecordlist", method = RequestMethod.GET)
-	public JSONObject recordList(String pageno) {
+	public JSONObject recordList(String pageno,String size,String sort) {
 		JSONObject res_json = new JSONObject();
-		Page page=new Page<>(Integer.parseInt(pageno));
-		
-		page=apprecordService.findAllAppRecordPage(page);
-		res_json=JSONObject.fromObject(page);
-		res_json.put("code", 200);
-		res_json.put("msg", "成功");
+		int count = apprecordService.count();
+		Page page=new Page<>(Integer.parseInt(pageno),Integer.parseInt(size),count);
+		List<DownloadRecord> recordlist=apprecordService.findAllAppRecordPage(page);
+		JSONArray jsonarray=JSONArray.fromObject(recordlist, new JSONInitialize().JSONDateConfig());
+		res_json.put("content", jsonarray);
+		res_json.put("totalElements", count);
 		return res_json;
 	}
 	

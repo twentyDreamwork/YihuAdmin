@@ -1,5 +1,7 @@
 package cn.yihu.microboot.service;
 
+import java.util.List;
+
 import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.AppUser;
 import cn.yihu.microboot.vo.Page;
@@ -22,7 +24,7 @@ public interface AppUserService {
 	public int check_wxid(String wxid);
 	
 	
-    public Page findAllAppUserPage(Page page);
+    public List<AppUser> findAllAppUserPage(Page page,String sort);
 	
 	public int insertAppUser(String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String creater);
 	
@@ -30,5 +32,6 @@ public interface AppUserService {
 	
 	public int updateAppUser(String id,String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String updater);
     
+	public int count();
 	
 }

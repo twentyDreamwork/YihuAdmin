@@ -22,13 +22,9 @@ public class AppServiceImpl implements AppService{
 
 
 	@Override
-	public Page findAllAppPage(Page page) {
+	public List<APP> findAllAppPage(Page page) {
 		// TODO Auto-generated method stub
-		int count=appmapper.CountAllApp();
-		page.setTotalCount(count);
-		page.setResultList(appmapper.findAllApp((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
-		
-		return page;
+		return appmapper.findAllApp((page.getPageNo()-1)*page.getPageSize(),page.getPageSize());
 	}
 
 	@Override
@@ -47,6 +43,12 @@ public class AppServiceImpl implements AppService{
 	public int updateApp(APP app) {
 		// TODO Auto-generated method stub
 		return appmapper.updateByPrimaryKeySelective(app);
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return appmapper.CountAllApp();
 	}
 	
 }

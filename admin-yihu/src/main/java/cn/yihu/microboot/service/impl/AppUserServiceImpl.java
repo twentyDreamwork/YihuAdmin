@@ -2,9 +2,11 @@ package cn.yihu.microboot.service.impl;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.dao.AppUserMapper;
@@ -19,10 +21,11 @@ import cn.yihu.microboot.vo.AppUser;
 import cn.yihu.microboot.vo.Page;
 import net.sf.json.JSONObject;
 
-@Service
+@Service("appUserService")
+@SuppressWarnings("unchecked")
 public class AppUserServiceImpl implements AppUserService{
 
-	@Resource
+	@Autowired
 	private AppUserMapper usermapper;
 	
 	@Resource
@@ -123,12 +126,10 @@ public class AppUserServiceImpl implements AppUserService{
 
 
 	@Override
-	public Page findAllAppUserPage(Page page) {
+	public List<AppUser> findAllAppUserPage(Page page,String sort) {
 		// TODO Auto-generated method stub
-		int count=usermapper.countAllUser();
-		page.setTotalCount(count);
-		page.setResultList(usermapper.findAllUser((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
-		return page;
+		String[] s=sort.split(",");
+		return usermapper.findAllUser((page.getPageNo()-1)*page.getPageSize(),page.getPageSize(),s[0],s[1]);
 	}
 
 
@@ -188,6 +189,13 @@ public class AppUserServiceImpl implements AppUserService{
 	public int check_wxid(String wxid) {
 		// TODO Auto-generated method stub
 		return usermapper.checkwxid(wxid);
+	}
+
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return usermapper.countAllUser();
 	}
 
 }
