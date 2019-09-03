@@ -1,24 +1,43 @@
 package cn.yihu.microboot.vo;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class Member {
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import cn.yihu.microboot.vo.goods.Goods;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+@Data
+@TableName("member")
+public class Member implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@ApiModelProperty("id")
     private String id;
 
+	@ApiModelProperty("会员称号")
     private String memberName;
 
+	@ApiModelProperty("会员等级")
     private Integer level;
 
+	@ApiModelProperty("积分等级")
     private Integer icon;
 
+	@ApiModelProperty("加成")
     private Integer addition;
 
+	@ApiModelProperty("创建人")
     private String creater;
 
+	@ApiModelProperty("创建时间")
     private Date createTime;
 
+	@ApiModelProperty("更新人")
     private String updater;
 
+	@ApiModelProperty("更新时间")
     private Date updateTime;
 
     public Member(String id, String memberName, Integer level, Integer icon, Integer addition, String creater, Date createTime, String updater, Date updateTime) {

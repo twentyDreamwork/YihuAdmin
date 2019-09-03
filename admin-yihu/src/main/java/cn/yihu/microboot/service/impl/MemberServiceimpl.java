@@ -46,12 +46,11 @@ public class MemberServiceimpl implements MemberService{
 	}
 
 	@Override
-	public Page select_page(Page page) {
+	public List<Member> select_page(Page page) {
 		// TODO Auto-generated method stub
 		int count=membermapper.count_all();
 		page.setTotalCount(count);
-		page.setResultList(membermapper.findpage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
-		return page;
+		return membermapper.findpage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize());
 	}
 
 	@Override
@@ -64,6 +63,12 @@ public class MemberServiceimpl implements MemberService{
 	public List<Member> member_list() {
 		// TODO Auto-generated method stub
 		return membermapper.findall();
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return membermapper.count_all();
 	}
 	
 }

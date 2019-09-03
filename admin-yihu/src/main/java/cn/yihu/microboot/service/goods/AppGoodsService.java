@@ -35,7 +35,7 @@ public interface AppGoodsService {
 	
 	
 	/**
-	 * 根据父级ID获取撒谎商品分类
+	 * 根据父级ID获取商品分类
 	 * @param parentId
 	 * @return
 	 */

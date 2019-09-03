@@ -14,9 +14,11 @@ public interface MemberService {
 	
 	public int delete(String id);
 	
-	public Page select_page(Page page);
+	public List<Member> select_page(Page page);
 	
 	public Member select_one(String id);
+	
+	public int count();
 
 	
 	//api

@@ -1,8 +1,9 @@
 package cn.yihu.microboot.service.store;
 
+import java.util.List;
+
 import cn.yihu.microboot.vo.Page;
-import cn.yihu.microboot.vo.store.XeClassify;
-import cn.yihu.microboot.vo.store.XeGoods;
+import cn.yihu.microboot.vo.goods.Goods;
 
 public interface GoodsService {
 
@@ -13,8 +14,10 @@ public interface GoodsService {
 	
 	public int delete(String id);
 	
-	public Page select_page(Page page);
+	public List<Goods> select_page(Page page);
 	
-	public XeGoods select_one(String id);
+	public Goods select_one(String id);
+	
+	public int count();
 	
 }
