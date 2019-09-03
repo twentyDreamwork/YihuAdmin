@@ -86,5 +86,31 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 		return Results.resultSucc(goodsMapper.findrecommendGoodsPage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
 	}
 
+	@Override
+	public Results<Boolean> insertClassify(Classify classify) {
+		return classifyMapper.insert(classify) > 0 ? Results.resultSucc() : Results.resultErr();
+	}
+
+	@Override
+	public Results<Boolean> updateClassify(Classify classify) {
+	    return classifyMapper.updateAllColumnById(classify) > 0 ? Results.resultSucc() : Results.resultErr();
+	}
+
+	@Override
+	public Results<Boolean> insertCarousel(Carousel carousel) {
+		return carouselMapper.insert(carousel) > 0 ? Results.resultSucc() : Results.resultErr();
+	}
+
+	@Override
+	public Results<Boolean> updateCarousel(Carousel carousel) {
+		  return carouselMapper.updateAllColumnById(carousel) > 0 ? Results.resultSucc() : Results.resultErr();
+	}
+
+	@Override
+	public Results<Boolean> delCarousel(Integer id) {
+		return carouselMapper.deleteById(id)> 0 ? Results.resultSucc() : Results.resultErr();
+	}
+
+	
 	
 }

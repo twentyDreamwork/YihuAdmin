@@ -74,4 +74,46 @@ public interface AppGoodsService {
 	 * @return
 	 */
 	Results<List<XeGoods>> queryrecommendGoods(Page page);
+	
+	
+	/**
+	 * 添加商品分类
+	 * @param classify
+	 * @return
+	 */
+	Results<Boolean> insertClassify(Classify classify);
+	
+	
+	/**
+	 * 更新商品分类
+	 * @param classify
+	 * @return
+	 */
+	Results<Boolean> updateClassify(Classify classify);
+	
+	
+	
+	/**
+	 * 添加轮播
+	 * @param classify
+	 * @return
+	 */
+	Results<Boolean> insertCarousel(Carousel carousel);
+	
+	
+	/**
+	 * 更新轮播
+	 * @param classify
+	 * @return
+	 */
+	Results<Boolean> updateCarousel(Carousel carousel);
+	
+	
+	/**
+	 * 删除轮播
+	 * @param classify
+	 * @return
+	 */
+	Results<Boolean> delCarousel(Integer id);
+	
 }

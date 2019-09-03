@@ -3,6 +3,7 @@ package cn.yihu.microboot.controller.app;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,4 +85,38 @@ public class AppGoodsController {
 		Page page=new Page<>(pageno);
 		return appGoodsService.queryrecommendGoods(page);
 	}
+	
+	@ApiOperation(value="添加商品分类")
+	@PostMapping("/insertClassify")
+	public Results<Boolean> insertClassify(@RequestBody Classify classify) {
+		return appGoodsService.insertClassify(classify);
+	}
+	
+	@ApiOperation(value="更新商品分类")
+	@PostMapping("/updateClassify")
+	public Results<Boolean> updateClassify(@RequestBody Classify classify) {
+		return appGoodsService.updateClassify(classify);
+	}
+	
+	@ApiOperation(value="添加轮播")
+	@PostMapping("/insertCarousel")
+	public Results<Boolean> insertCarousel(@RequestBody Carousel carousel) {
+		return appGoodsService.insertCarousel(carousel);
+	}
+	
+	@ApiOperation(value="更新轮播")
+	@PostMapping("/updateCarousel")
+	public Results<Boolean> updateCarousel(@RequestBody Carousel carousel) {
+		return appGoodsService.updateCarousel(carousel);
+	}
+	
+	
+	@ApiOperation(value="删除轮播")
+	@DeleteMapping("/delCarousel/{id}")
+	public Results<Boolean> delCarousel(@PathVariable("id")Integer id) {
+		return appGoodsService.delCarousel(id);
+	}
+	
+	
+	
 }
