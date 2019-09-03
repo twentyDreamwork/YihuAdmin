@@ -24,12 +24,19 @@ public class CoinlogServiceimpl implements CoinlogService{
 	}
 
 	@Override
-	public Page coinlog_list(Page page) {
+	public List<Coin_log> coinlog_list(Page page) {
 		// TODO Auto-generated method stub
 		int count = coinlogmapper.count_all();
 		page.setTotalCount(count);
-		page.setResultList(coinlogmapper.findpage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
-		return page;
+		return coinlogmapper.findpage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize());
+	}
+
+	
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return coinlogmapper.count_all();
 	}
 
 }

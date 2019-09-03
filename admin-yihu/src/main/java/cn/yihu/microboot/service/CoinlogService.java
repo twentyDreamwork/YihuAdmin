@@ -10,6 +10,8 @@ public interface CoinlogService {
 	//web
 	public int delete(String logid);
 	
-	public Page coinlog_list(Page page);
+	public List<Coin_log> coinlog_list(Page page);
+	
+	public int count();
 	
 }
