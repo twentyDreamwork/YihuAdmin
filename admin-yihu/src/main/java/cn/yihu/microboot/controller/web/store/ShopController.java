@@ -14,16 +14,16 @@ import cn.yihu.microboot.vo.store.XeShop;
 import io.swagger.annotations.Api;
 
 //商铺
-@Api(value="web商铺管理")
-@RestController
-@RequestMapping("/store/shop")
+//@Api(value="web商铺管理")
+//@RestController
+//@RequestMapping("/store/shop")
 public class ShopController {
 
 	@Resource
 	private ShopService shopService;
 	
 	// 添加
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	//@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public Results add(String shopname,String shopaddress,String shoptel) {
 		try {
 			int i=shopService.add(shopname, shopaddress, shoptel);
@@ -41,7 +41,7 @@ public class ShopController {
 	}
 
 	// 修改
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	//@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public Results update(String id,String shopname,String shopaddress,String shoptel) {
 		try {
 			int i=shopService.update(id, shopname, shopaddress, shoptel);
@@ -59,7 +59,7 @@ public class ShopController {
 	}
 
 	// 删除
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	//@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public Results delete(String id) {
 		int i=shopService.delete(id);
 		if(i==0) {
@@ -69,7 +69,7 @@ public class ShopController {
 	}
 
 	// 查询
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	//@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public Results select_page(String pageno) {
 		Page page=new Page<>(Integer.parseInt(pageno));
 		page = shopService.select_page(page);
@@ -77,7 +77,7 @@ public class ShopController {
 	}
 	
 	//单一查询
-	@RequestMapping(value = "/one", method = RequestMethod.GET)
+	//@RequestMapping(value = "/one", method = RequestMethod.GET)
 	public Results select_one(String id) {
 		return new Results<XeShop>(CommonCode.SUCCESS,shopService.select_one(id));
 	} 

@@ -16,16 +16,16 @@ import cn.yihu.microboot.vo.store.XeLocation;
 import io.swagger.annotations.Api;
 
 //地址
-@Api(value = "web地址管理")
-@RestController
-@RequestMapping("/store/location")
+//@Api(value = "web地址管理")
+//@RestController
+//@RequestMapping("/store/location")
 public class LocationController {
 
 	@Resource
 	private LocationService locationService;
 	
 	// 添加
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	//@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public Results add(String lname,String pid,String sort) {
 		try {
 			int i=locationService.add(lname, Integer.parseInt(pid), Integer.parseInt(sort));
@@ -44,7 +44,7 @@ public class LocationController {
 		
 
 	// 修改
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	//@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public Results update(String id,String lname,String pid,String sort,String display) {
 		try {
 			int i=locationService.update(id, lname, Integer.parseInt(pid), Integer.parseInt(sort), Integer.parseInt(display));
@@ -62,7 +62,7 @@ public class LocationController {
 	}
 
 	// 删除
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	//@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public Results delete(String id) {
 		int i=locationService.delete(id);
 		if(i==0) {
@@ -72,7 +72,7 @@ public class LocationController {
 	}
 
 	// 查询
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	//@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public Results select_page(String pageno) {
 		Page page=new Page<>(Integer.parseInt(pageno));
 		page = locationService.select_page(page);
@@ -80,7 +80,7 @@ public class LocationController {
 	}
 	
 	//单一查询
-	@RequestMapping(value = "/one", method = RequestMethod.GET)
+	//@RequestMapping(value = "/one", method = RequestMethod.GET)
 	public Results select_one(String id) {
 		return new Results<XeLocation>(CommonCode.SUCCESS,locationService.select_one(id));
 	} 

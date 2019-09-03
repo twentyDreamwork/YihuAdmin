@@ -22,9 +22,9 @@ import net.sf.json.JSONObject;
  * @author leqi
  *
  */
-@Api(value = "web淘宝链接管理")
-@RestController
-@RequestMapping("/service")
+//@Api(value = "web淘宝链接管理")
+//@RestController
+//@RequestMapping("/service")
 public class TaobaolinkController {
 
 	@Resource
@@ -33,7 +33,7 @@ public class TaobaolinkController {
 	public Constant conn=new Constant();
 	
 	//链接列表
-	@RequestMapping(value = "/gettaobaolink", method = RequestMethod.GET)
+	//@RequestMapping(value = "/gettaobaolink", method = RequestMethod.GET)
 	public JSONObject taobao_link_list(String pageno) {
 		JSONObject res_json = new JSONObject();
 		Page page=new Page<>(Integer.parseInt(pageno));
@@ -47,7 +47,7 @@ public class TaobaolinkController {
 	}
 	
 	//链接添加
-	@RequestMapping(value = "/addtaobaolink", method = RequestMethod.GET)
+	//@RequestMapping(value = "/addtaobaolink", method = RequestMethod.GET)
 	public void taobao_link_add(String linkname,String link,String remark,List<String> base64DataList) {
 		JSONObject res_json = new JSONObject();
 		ImgUpload imgupload=new ImgUpload();
@@ -61,13 +61,13 @@ public class TaobaolinkController {
 	}
 	
 	//链接修改
-	@RequestMapping(value = "/updatetaobaolink", method = RequestMethod.GET)
+	//@RequestMapping(value = "/updatetaobaolink", method = RequestMethod.GET)
 	public void taobao_link_update(String linkid,String linkname,String link,String remark,List<String> base64DataList) {
 		
 	}
 	
 	//链接删除
-	@RequestMapping(value = "/deltaobaolink", method = RequestMethod.GET)
+	//@RequestMapping(value = "/deltaobaolink", method = RequestMethod.GET)
 	public void taobao_link_delete() {
 		
 	}

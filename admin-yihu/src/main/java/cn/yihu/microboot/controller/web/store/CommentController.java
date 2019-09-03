@@ -15,9 +15,9 @@ import cn.yihu.microboot.vo.store.XeComment;
 import io.swagger.annotations.Api;
 
 //评价
-@Api(value = "web评价管理")
-@RestController
-@RequestMapping("/store/comment")
+//@Api(value = "web评价管理")
+//@RestController
+//@RequestMapping("/store/comment")
 public class CommentController {
 
 	@Resource
@@ -34,7 +34,7 @@ public class CommentController {
 	}
 
 	// 删除
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	//@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public Results delete(String id) {
 		int i=commentService.delete(id);
 		if(i==0) {
@@ -44,7 +44,7 @@ public class CommentController {
 	}
 
 	// 查询
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	//@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public Results select_page(String pageno) {
 		Page page=new Page<>(Integer.parseInt(pageno));
 		page = commentService.select_page(page);
@@ -52,7 +52,7 @@ public class CommentController {
 	}
 	
 	//单一查询
-	@RequestMapping(value = "/one", method = RequestMethod.GET)
+	//@RequestMapping(value = "/one", method = RequestMethod.GET)
 	public Results select_one(String id) {
 		return new Results<XeComment>(CommonCode.SUCCESS,commentService.select_one(id));
 	} 
