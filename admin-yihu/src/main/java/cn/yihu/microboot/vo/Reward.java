@@ -1,12 +1,27 @@
 package cn.yihu.microboot.vo;
 
-public class Reward {
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@TableName("reward")
+public class Reward implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@ApiModelProperty("id")
     private String id;
 
+	@ApiModelProperty("奖励名")
     private String rewardname;
 
+	@ApiModelProperty("奖励值")
     private Integer value;
 
+	@ApiModelProperty("星期")
     private Integer day;
 
     public Reward(String id, String rewardname, Integer value, Integer day) {

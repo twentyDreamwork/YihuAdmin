@@ -1,16 +1,31 @@
 package cn.yihu.microboot.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Coin_log {
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@TableName("coin_log")
+public class Coin_log implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@ApiModelProperty("id")
     private String id;
 
+	@ApiModelProperty("用户id")
     private String userid;
 
+	@ApiModelProperty("积分")
     private String value;
 
+	@ApiModelProperty("时间")
     private Date time;
 
+	@ApiModelProperty("方式")
     private String channel;
 
     public Coin_log(String id, String userid, String value, Date time, String channel) {

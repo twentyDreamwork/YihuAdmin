@@ -13,7 +13,8 @@ import cn.yihu.microboot.service.AppService;
 import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.Page;
 
-@Service
+@Service("appService")
+@SuppressWarnings("unchecked")
 public class AppServiceImpl implements AppService{
 
 	@Resource
@@ -30,7 +31,8 @@ public class AppServiceImpl implements AppService{
 	@Override
 	public int insertApp(APP app) {
 		// TODO Auto-generated method stub
-		return appmapper.insertSelective(app);
+		
+		return appmapper.insert(app);
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,9 +68,9 @@ public class WebAppUserController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	//@RequestMapping(value = "/deleteappuser", method = RequestMethod.GET)
-	@DeleteMapping("/deleteappuser/{id}")
-	public Results deleteappuser(@PathVariable("id")String id) {
+	@ApiOperation(value="pc端删除app用户")
+	@DeleteMapping("/deleteappuser")
+	public Results deleteappuser(String id) {
 		JSONObject res_json=new JSONObject();
 		int result=userservice.deleteAppUser(id);
 		if(result==0) {
@@ -77,10 +79,12 @@ public class WebAppUserController extends AbstractBaseController{
 		return new Results<>(CommonCode.SUCCESS);
 	}
 	
-	@RequestMapping(value = "/updateappuser", method = RequestMethod.GET)
-	public JSONObject updateappuser(String id,String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String updater) {
-		JSONObject res_json = new JSONObject();
-		int result=userservice.updateAppUser(id, wxid, username, password, phone, platform, MachineCode, IP,updater);
+	@ApiOperation(value="pc端更新app用户信息")
+	@PutMapping("/updateappuser")
+	//public JSONObject updateappuser(String id,String wxid,String username,String password,String phone, String , String MachineCode, String IP,String updater) {
+	public JSONObject updateappuser(@RequestBody JSONObject json) {
+	    JSONObject res_json = new JSONObject();
+		int result=userservice.updateAppUser(json.getString("id"), json.getString("wxid"), json.getString("username"), json.getString("password"), json.getString("phone"), json.getString("platform"), json.getString("MachineCode"), json.getString("IP"),json.getString("updater"));
 		if(result==0) {
 			res_json.put("result", result);
 			res_json.put("code", 200);

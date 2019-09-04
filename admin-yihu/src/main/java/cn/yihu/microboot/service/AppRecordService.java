@@ -17,4 +17,5 @@ public interface AppRecordService {
 	
 	public int count();
 	
+	
 }

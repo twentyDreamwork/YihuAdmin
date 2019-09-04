@@ -1,26 +1,45 @@
 package cn.yihu.microboot.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Integral {
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@TableName("integral")
+public class Integral implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@ApiModelProperty("id")
     private String id;
 
+	@ApiModelProperty("用户id")
     private String userid;
 
+	@ApiModelProperty("总分")
     private Integer total;
 
+	@ApiModelProperty("积分")
     private Integer nowintegral;
 
+	@ApiModelProperty("兑换金额")
     private Integer money;
 
+	@ApiModelProperty("创建时间")
     private Date createtime;
 
+	@ApiModelProperty("创建者")
     private String creater;
 
+	@ApiModelProperty("更新时间")
     private Date updatetime;
 
+	@ApiModelProperty("更新者")
     private String updater;
 
+	
     public Integral(String id, String userid, Integer total, Integer nowintegral, Integer money, Date createtime, String creater, Date updatetime, String updater) {
         this.id = id;
         this.userid = userid;

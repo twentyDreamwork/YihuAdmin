@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
 import cn.yihu.microboot.vo.APP;
+import cn.yihu.microboot.vo.AppUser;
 
 @Mapper
-public interface APPMapper {
+public interface APPMapper extends BaseMapper<APP>{
     int deleteByPrimaryKey(String id);
-
-    int insert(APP record);
 
     int insertSelective(APP record);
 

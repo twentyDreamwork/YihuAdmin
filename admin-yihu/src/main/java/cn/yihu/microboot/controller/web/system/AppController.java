@@ -3,10 +3,17 @@ package cn.yihu.microboot.controller.web.system;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.websocket.server.PathParam;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.yihu.microboot.config.JSONInitialize;
@@ -41,11 +48,13 @@ public class AppController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/insertapp", method = RequestMethod.GET)
-	public JSONObject insertapp(String name,String icon,String platform,String appPackage,String link,String type,String integral,String downloadNum,String remark) {
+	@ApiOperation(value="pc端添加app信息")
+	@PostMapping("/insertapp")
+	//public JSONObject insertapp(String name,String icon,String platform,String appPackage,String link,String type,String integral,String downloadNum,String remark) {
+	public JSONObject insertapp(@RequestBody JSONObject json) {
 		JSONObject res_json = new JSONObject();
 		UUIDTool uuid=new UUIDTool();
-		APP app=new APP(uuid.getUUID(), name, icon, Integer.parseInt(platform), appPackage, link, Integer.parseInt(type), integral, Integer.parseInt(downloadNum), remark); 
+		APP app=new APP(uuid.getUUID(), json.getString("name"), json.getString("icon"), Integer.parseInt(json.getString("platform")), json.getString("appPackage"), json.getString("link"), Integer.parseInt(json.getString("type")), json.getString("integral"), Integer.parseInt(json.getString("downloadNum")), json.getString("remark")); 
 		int result=appSrvice.insertApp(app);
 		if(result==0) {
 			res_json.put("result", result);
@@ -59,8 +68,10 @@ public class AppController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/deleteapp", method = RequestMethod.GET)
-	public JSONObject deleteapp(String Appid) {
+	@ApiOperation(value="pc端删除app信息")
+	@DeleteMapping("/deleteapp/{Appid}")
+	public JSONObject deleteapp(@PathVariable("Appid") String Appid) {
+		System.out.println(Appid);
 		JSONObject res_json = new JSONObject();
 		int result=appSrvice.deleteApp(Appid);
 		if(result==0) {
@@ -75,10 +86,12 @@ public class AppController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/updateapp", method = RequestMethod.GET)
-	public JSONObject updateapp(String id,String name,String icon,String platform,String appPackage,String link,String type,String integral,String downloadNum,String remark) {
+	@ApiOperation(value="pc端更新app信息")
+	@PutMapping("/updateapp")
+	public JSONObject updateapp(@RequestBody JSONObject json) {
 		JSONObject res_json = new JSONObject();
-		APP app=new APP(id, name, icon, Integer.parseInt(platform), appPackage, link, Integer.parseInt(type), integral, Integer.parseInt(downloadNum), remark);
+		//APP app=new APP(id, name, icon, Integer.parseInt(platform), appPackage, link, Integer.parseInt(type), integral, Integer.parseInt(downloadNum), remark);
+		APP app=(APP)JSONObject.toBean(json, APP.class);
 		int result = appSrvice.updateApp(app);
 		if(result==0) {
 			res_json.put("result", result);

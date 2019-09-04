@@ -119,7 +119,7 @@ public class AppUserServiceImpl implements AppUserService{
 		user.setUpdater(olduser.getUsername());
 		user.setLogintime(date);
 		
-		int result=usermapper.updateByPrimaryKeySelective(user);
+		int result=usermapper.updateById(user);
 		
 		return result;
 	}
