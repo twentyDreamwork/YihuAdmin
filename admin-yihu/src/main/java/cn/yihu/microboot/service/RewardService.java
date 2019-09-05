@@ -10,7 +10,7 @@ public interface RewardService {
 	//web
 	public int add(String rewardname,int value,int day);
 	
-	public int update(String id,String rewardname,int value,int day);
+	public int update(Reward reward);
 	
 	public int delete(String id);
 	

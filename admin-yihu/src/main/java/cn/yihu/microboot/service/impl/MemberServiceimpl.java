@@ -13,6 +13,7 @@ import cn.yihu.microboot.util.DateTime;
 import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.Member;
 import cn.yihu.microboot.vo.Page;
+import cn.yihu.microboot.vo.Reward;
 
 @Service
 public class MemberServiceimpl implements MemberService{
@@ -21,21 +22,25 @@ public class MemberServiceimpl implements MemberService{
 	private MemberMapper membermapper;
 	
 	@Override
-	public int add(String member_name, String level, String icon, String addition) {
+	public int add(Member member) {
 		// TODO Auto-generated method stub
 		UUIDTool uuidtool=new UUIDTool();
 		DateTime datetime=new DateTime();
 		Timestamp date=datetime.now().toSqlTimestamp();
-		Member member=new Member(uuidtool.getUUID(), member_name, Integer.parseInt(level), Integer.parseInt(icon), Integer.parseInt(addition), "System", date, "System", date);
+		member.setId(uuidtool.getUUID());
+		member.setCreater("System");
+		member.setCreateTime(date);
+		member.setUpdater("System");
+		member.setUpdateTime(date);
 		return membermapper.insertSelective(member);
 	}
 
 	@Override
-	public int update(String id, String member_name, String level, String icon, String addition) {
+	public int update(Member member) {
 		// TODO Auto-generated method stub
 		DateTime datetime=new DateTime();
 		Timestamp date=datetime.now().toSqlTimestamp();
-		Member member=new Member(id, member_name, Integer.parseInt(level), Integer.parseInt(icon), Integer.parseInt(addition), null, null, "System", date);
+		member.setUpdateTime(date);
 		return membermapper.updateByPrimaryKeySelective(member);
 	}
 

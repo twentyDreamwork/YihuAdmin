@@ -2,17 +2,18 @@ package cn.yihu.microboot.service.store;
 
 import java.util.List;
 
+import cn.yihu.microboot.util.Results;
 import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.Goods;
 
 public interface GoodsService {
 
 	//web
-	public int add();
+	public Results<Boolean> add(Goods goods);
 	
-	public int update();
+	public Results<Boolean> update(Goods goods);
 	
-	public int delete(String id);
+	public Results<Boolean> delete(String id);
 	
 	public List<Goods> select_page(Page page);
 	

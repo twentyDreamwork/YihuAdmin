@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.dao.store.XeGoodsMapper;
 import cn.yihu.microboot.service.store.GoodsService;
+import cn.yihu.microboot.util.Results;
+import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.Goods;
-import cn.yihu.microboot.vo.store.XeGoods;
 
 /**
  * 商品管理实现
@@ -24,21 +25,23 @@ public class GoodsServiceimpl implements GoodsService {
 	public XeGoodsMapper goodsmapper;
 	
 	@Override
-	public int add() {
+	public Results<Boolean> add(Goods goods) {
 		// TODO Auto-generated method stub
-		return 0;
+		UUIDTool uuidtool=new UUIDTool();
+		goods.setId(uuidtool.getUUID());
+		return goodsmapper.insert(goods)> 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
 	@Override
-	public int update() {
+	public Results<Boolean> update(Goods goods) {
 		// TODO Auto-generated method stub
-		return 0;
+		return goodsmapper.updateByPrimaryKey(goods)> 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
 	@Override
-	public int delete(String id) {
+	public Results<Boolean> delete(String id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return goodsmapper.deleteByPrimaryKey(id)> 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
 	@Override

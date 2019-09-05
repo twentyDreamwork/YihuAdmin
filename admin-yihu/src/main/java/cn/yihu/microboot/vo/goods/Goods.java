@@ -2,6 +2,7 @@ package cn.yihu.microboot.vo.goods;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 
@@ -49,10 +50,21 @@ public class Goods implements Serializable{
 	@ApiModelProperty("推荐")
 	private Integer recommend;
 	
-	@ApiModelProperty("热门")
+    @ApiModelProperty("热门")
 	private Integer hot;
 	
-	public Goods(String id, String shopId, String cateId, String locaId, String mainTitle, String subTitle, BigDecimal price, BigDecimal oldPrice, Integer buy, String goodsImg,String taobaoUrl,Integer recommend,Integer hot) {
+	@ApiModelProperty("限时")
+	private Integer time;
+	
+	@ApiModelProperty("计时器(小时)")
+	private Integer timer;
+	
+	@ApiModelProperty("开始计时")
+	private Date timestart;
+	
+	
+	
+	public Goods(String id, String shopId, String cateId, String locaId, String mainTitle, String subTitle, BigDecimal price, BigDecimal oldPrice, Integer buy, String goodsImg,String taobaoUrl,Integer recommend,Integer hot,Integer time,Integer timer，Date timestart) {
         this.id = id;
         this.shopId = shopId;
         this.cateId = cateId;
@@ -66,6 +78,9 @@ public class Goods implements Serializable{
         this.taobaoUrl=taobaoUrl;
         this.recommend=recommend;
         this.hot=hot;
+        this.time=time;
+        this.timer=timer;
+        this.timestart=timestart;
     }
 	
 }

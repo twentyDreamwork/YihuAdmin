@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.goods.Goods;
-import cn.yihu.microboot.vo.store.XeGoods;
 
 @Mapper
-public interface XeGoodsMapper {
+public interface XeGoodsMapper extends BaseMapper<Goods>{
     int deleteByPrimaryKey(String id);
-
-    int insert(Goods record);
 
     int insertSelective(Goods record);
 

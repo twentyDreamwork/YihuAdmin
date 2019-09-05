@@ -1,5 +1,9 @@
 package cn.yihu.microboot.controller.web.service;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,10 +42,10 @@ public class RewardController {
 	}
 
 	// 修改
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public Results update(String id,String rewardname,String value,String day) {
+	@PostMapping("/update")
+	public Results update(@RequestBody Reward reward) {
 		try {
-			int i=rewardService.update(id,rewardname, Integer.parseInt(value), Integer.parseInt(day));
+			int i=rewardService.update(reward);
 			if(i==0) {
 				new Results(CommonCode.FAIL);
 			}
@@ -56,7 +60,7 @@ public class RewardController {
 	}
 
 	// 删除
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@DeleteMapping("/delete")
 	public Results delete(String id) {
 		int i=rewardService.delete(id);
 		if(i==0) {
@@ -66,7 +70,7 @@ public class RewardController {
 	}
 
 	// 查询
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	@GetMapping("/page")
 	public Results select_page(String pageno) {
 		Page page=new Page<>(Integer.parseInt(pageno));
 		page = rewardService.select_page(page);

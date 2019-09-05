@@ -18,7 +18,6 @@ import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
-import cn.yihu.microboot.vo.store.XeGoods;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
@@ -72,7 +71,7 @@ public class AppGoodsController {
 	
 	@ApiOperation(value="获取热门商品")
 	@PostMapping("/queryhotGoods")
-	public Results<List<XeGoods>> queryhotGoods(@RequestBody JSONObject json){
+	public Results<List<Goods>> queryhotGoods(@RequestBody JSONObject json){
 		int no=Integer.parseInt(json.getString("pageno"));
 		Page page=new Page<>(no);
 		return appGoodsService.queryhotGoods(page);
@@ -80,7 +79,7 @@ public class AppGoodsController {
 
 	@ApiOperation(value="获取推荐商品")
 	@GetMapping("/queryrecommendGoods")
-	public Results<List<XeGoods>> queryrecommendGoods(){
+	public Results<List<Goods>> queryrecommendGoods(){
 		Page page=new Page<>(1);
 		return appGoodsService.queryrecommendGoods(page);
 	}

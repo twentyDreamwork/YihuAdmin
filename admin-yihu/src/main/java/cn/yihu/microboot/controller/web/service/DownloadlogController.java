@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,7 @@ public class DownloadlogController {
 	
 	//全部查询
 	@ApiOperation(value="pc端更新下载记录")
-	@PutMapping("/downlogupdate")
+	@PostMapping("/downlogupdate")
 	public Results update(@RequestBody JSONObject json) {
 		DownloadRecord log=(DownloadRecord)JSONObject.toBean(json, DownloadRecord.class);
 		int result=recordService.updateAppRecord(log);

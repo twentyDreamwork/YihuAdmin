@@ -15,7 +15,6 @@ import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
-import cn.yihu.microboot.vo.store.XeGoods;
 
 /**
  * 商品分类实现
@@ -71,7 +70,7 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 	}
 
 	@Override
-	public Results<List<XeGoods>> queryhotGoods(Page page) {
+	public Results<List<Goods>> queryhotGoods(Page page) {
 		// TODO Auto-generated method stub
 		int count = goodsMapper.count_hot();
 		page.setTotalCount(count);
@@ -79,7 +78,7 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 	}
 
 	@Override
-	public Results<List<XeGoods>> queryrecommendGoods(Page page) {
+	public Results<List<Goods>> queryrecommendGoods(Page page) {
 		// TODO Auto-generated method stub
 		int count = goodsMapper.count_hot();
 		page.setTotalCount(count);

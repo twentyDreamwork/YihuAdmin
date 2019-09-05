@@ -26,9 +26,9 @@ public class RewardServiceimpl implements RewardService {
 	}
 
 	@Override
-	public int update(String id, String rewardname, int value, int day) {
+	public int update(Reward reward) {
 		// TODO Auto-generated method stub
-		return rewardmapper.updateByPrimaryKeySelective(new Reward(id, rewardname, value, day));
+		return rewardmapper.updateByPrimaryKeySelective(reward);
 	}
 
 	@Override

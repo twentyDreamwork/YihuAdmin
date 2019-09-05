@@ -52,6 +52,14 @@ public class Member implements Serializable{
         this.updateTime = updateTime;
     }
 
+    public Member(String id,String creater,String updater,Date createTime,Date updateTime) {
+    	this.id=id;
+    	this.creater = creater;
+        this.createTime = createTime;
+        this.updater = updater;
+        this.updateTime = updateTime;
+    }
+    
     public Member() {
         super();
     }

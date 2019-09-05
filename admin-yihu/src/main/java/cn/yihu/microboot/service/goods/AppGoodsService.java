@@ -8,7 +8,6 @@ import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
-import cn.yihu.microboot.vo.store.XeGoods;
 
 /**
  * 商品分类
@@ -67,13 +66,13 @@ public interface AppGoodsService {
 	 * 获取热门商品
 	 * @return
 	 */
-	Results<List<XeGoods>> queryhotGoods(Page page);
+	Results<List<Goods>> queryhotGoods(Page page);
 	
 	/**
 	 * 获取推荐商品
 	 * @return
 	 */
-	Results<List<XeGoods>> queryrecommendGoods(Page page);
+	Results<List<Goods>> queryrecommendGoods(Page page);
 	
 	
 	/**

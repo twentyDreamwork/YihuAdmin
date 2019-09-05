@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import cn.yihu.microboot.vo.goods.Goods;
-import cn.yihu.microboot.vo.store.XeGoods;
 
 @Mapper
 public interface GoodsMapper extends BaseMapper<Goods>{
@@ -27,11 +26,11 @@ public interface GoodsMapper extends BaseMapper<Goods>{
 	int count_hot();
 	
 	@Select("select * from xe_goods where hot=1 limit #{pageno},#{pagesize}")
-    List<Goods> findHotGoodsPage(int pageno,int pagesize);
+    List<Goods> findHotGoodsPage(@Param("pageno")int pageno,@Param("pagesize")int pagesize);
 	
 	@Select("select count(*) from xe_goods where recommend=1")
     int count_recommend();
 	
 	@Select("select * from xe_goods where recommend=1 limit #{pageno},#{pagesize}")
-    List<Goods> findrecommendGoodsPage(int pageno,int pagesize);
+    List<Goods> findrecommendGoodsPage(@Param("pageno")int pageno,@Param("pagesize")int pagesize);
 }

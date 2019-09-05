@@ -4,6 +4,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,26 +34,26 @@ public class WebMemberController {
 	private MemberService memberservice;
 
 	//添加
-	@RequestMapping(value = "/addmember", method = RequestMethod.GET)
-	public Results add(String member_name,String level,String icon,String addition) {
-		int i=memberservice.add(member_name, level, icon, addition);
+	@PostMapping("/addmember")
+	public Results add(@RequestBody Member member) {
+		int i=memberservice.add(member);
 		if(i==0) {
 			return new Results(CommonCode.FAIL);
 		}
 		return new Results(CommonCode.SUCCESS);
 	}
 	//修改
-	@RequestMapping(value = "/updatemember", method = RequestMethod.GET)
-	public Results update(String id,String member_name,String level,String icon,String addition) {
-		int i=memberservice.update(id, member_name, level, icon, addition);
+	@PostMapping("/updatemember")
+	public Results update(@RequestBody Member member) {
+		int i=memberservice.update(member);
 		if(i==0) {
 			return new Results(CommonCode.FAIL);
 		}
 		return new Results(CommonCode.SUCCESS);
 	}
 	//删除
-	@RequestMapping(value = "/deletemember", method = RequestMethod.GET)
-	public Results delete(String id) {
+	@DeleteMapping("/deletemember/{id}")
+	public Results delete(@PathVariable("id") String id) {
 		int i=memberservice.delete(id);
 		if(i==0) {
 			return new Results(CommonCode.FAIL);
@@ -56,7 +61,7 @@ public class WebMemberController {
 		return new Results(CommonCode.SUCCESS);
 	}
 	//查询
-	@RequestMapping(value = "/getmemberlist", method = RequestMethod.GET)
+	@GetMapping("/getmemberlist")
 	public JSONObject select_page(String pageno,String size,String sort) {
 		JSONObject res_json = new JSONObject();
 		int count = memberservice.count();
