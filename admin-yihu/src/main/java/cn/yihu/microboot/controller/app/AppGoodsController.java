@@ -33,14 +33,14 @@ public class AppGoodsController {
 	
 	
 	@ApiOperation(value="获取全部商品分类")
-	@PostMapping("/queryAllClassify")
+	@GetMapping("/queryAllClassify")
 	public Results<List<Classify>> queryAllClassify() {
 		return appGoodsService.queryAllClassify();
 	}
 	
 	
 	@ApiOperation(value="获取商品一级分类")
-	@PostMapping("/queryMajorClassify")
+	@GetMapping("/queryMajorClassify")
 	public Results<List<Classify>> queryMajorClassify() {
 		return appGoodsService.queryMajorClassify();
 	}
@@ -52,13 +52,13 @@ public class AppGoodsController {
 	}
 	
 	@ApiOperation(value="获取轮播图")
-	@PostMapping("/queryAllCarousel")
+	@GetMapping("/queryAllCarousel")
 	public Results<List<Carousel>> queryAllCarousel() {
 		return appGoodsService.queryAllCarousel();
 	}
 	
 	@ApiOperation(value="获取app首页信息")
-	@PostMapping("/appIndex")
+	@GetMapping("/appIndex")
 	public Results<AppIndex> appIndex(){
 		return appGoodsService.appIndex();
 	}
@@ -73,16 +73,15 @@ public class AppGoodsController {
 	@ApiOperation(value="获取热门商品")
 	@PostMapping("/queryhotGoods")
 	public Results<List<XeGoods>> queryhotGoods(@RequestBody JSONObject json){
-		int pageno=Integer.parseInt(json.getString("pageno"));
-		Page page=new Page<>(pageno);
+		int no=Integer.parseInt(json.getString("pageno"));
+		Page page=new Page<>(no);
 		return appGoodsService.queryhotGoods(page);
 	}
 
 	@ApiOperation(value="获取推荐商品")
-	@PostMapping("/queryrecommendGoods")
-	public Results<List<XeGoods>> queryrecommendGoods(@RequestBody JSONObject json){
-		int pageno=Integer.parseInt(json.getString("pageno"));
-		Page page=new Page<>(pageno);
+	@GetMapping("/queryrecommendGoods")
+	public Results<List<XeGoods>> queryrecommendGoods(){
+		Page page=new Page<>(1);
 		return appGoodsService.queryrecommendGoods(page);
 	}
 	

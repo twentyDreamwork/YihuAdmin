@@ -27,11 +27,11 @@ public interface GoodsMapper extends BaseMapper<Goods>{
 	int count_hot();
 	
 	@Select("select * from xe_goods where hot=1 limit #{pageno},#{pagesize}")
-    List<XeGoods> findHotGoodsPage(int pageno,int pagesize);
+    List<Goods> findHotGoodsPage(int pageno,int pagesize);
 	
 	@Select("select count(*) from xe_goods where recommend=1")
     int count_recommend();
 	
 	@Select("select * from xe_goods where recommend=1 limit #{pageno},#{pagesize}")
-    List<XeGoods> findrecommendGoodsPage(int pageno,int pagesize);
+    List<Goods> findrecommendGoodsPage(int pageno,int pagesize);
 }

@@ -49,7 +49,10 @@ public class Goods implements Serializable{
 	@ApiModelProperty("推荐")
 	private Integer recommend;
 	
-	public Goods(String id, String shopId, String cateId, String locaId, String mainTitle, String subTitle, BigDecimal price, BigDecimal oldPrice, Integer buy, String goodsImg) {
+	@ApiModelProperty("热门")
+	private Integer hot;
+	
+	public Goods(String id, String shopId, String cateId, String locaId, String mainTitle, String subTitle, BigDecimal price, BigDecimal oldPrice, Integer buy, String goodsImg,String taobaoUrl,Integer recommend,Integer hot) {
         this.id = id;
         this.shopId = shopId;
         this.cateId = cateId;
@@ -60,6 +63,9 @@ public class Goods implements Serializable{
         this.oldPrice = oldPrice;
         this.buy = buy;
         this.goodsImg = goodsImg;
+        this.taobaoUrl=taobaoUrl;
+        this.recommend=recommend;
+        this.hot=hot;
     }
 	
 }
