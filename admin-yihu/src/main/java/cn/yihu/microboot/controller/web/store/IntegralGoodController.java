@@ -49,7 +49,7 @@ public class IntegralGoodController {
 	
 	// 查询
 	@ApiOperation(value="pc端获取积分商品列表")
-	@GetMapping("/getgoodslist")
+	@GetMapping("/getintegralgoodslist")
 	public JSONObject select_page(String pageno,String size,String sort) {
 		JSONObject res_json = new JSONObject();
 		int count = integralGoodsService.count();

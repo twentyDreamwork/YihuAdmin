@@ -110,6 +110,22 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 		return carouselMapper.deleteById(id)> 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
+	@Override
+	public Results<List<Goods>> querytimeGoods(Page page) {
+		// TODO Auto-generated method stub
+		int count = goodsMapper.count_time();
+		page.setTotalCount(count);
+		return Results.resultSucc(goodsMapper.findtimeGoodsPage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
+	}
+
+
+
+	@Override
+	public Results<List<Goods>> queryClassifyGoods(Page page, String classifyid) {
+		// TODO Auto-generated method stub
+		return Results.resultSucc(goodsMapper.findClassifyGoodsPage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize(),classifyid));
+	}
+
 	
 	
 }

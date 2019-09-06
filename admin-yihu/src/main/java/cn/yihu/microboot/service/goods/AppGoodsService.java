@@ -115,4 +115,17 @@ public interface AppGoodsService {
 	 */
 	Results<Boolean> delCarousel(Integer id);
 	
+	/**
+	 * 获取限时商品
+	 * @param page
+	 * @return
+	 */
+	Results<List<Goods>> querytimeGoods(Page page);
+	
+	/**
+	 * 根据分类获取商品
+	 * @param page
+	 * @return
+	 */
+	Results<List<Goods>> queryClassifyGoods(Page page,String classifyid);
 }

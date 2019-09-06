@@ -84,6 +84,20 @@ public class AppGoodsController {
 		return appGoodsService.queryrecommendGoods(page);
 	}
 	
+	@ApiOperation(value="获取限时商品")
+	@PostMapping("/querytimeGoods")
+	public Results<List<Goods>> querytimeGoods(@RequestBody JSONObject json){
+		Page page=new Page<>(Integer.parseInt(json.getString("pageno")));
+		return appGoodsService.queryrecommendGoods(page);
+	}
+	
+	@ApiOperation(value="根据分类获取商品")
+	@PostMapping("/queryClassifyGoods")
+	public Results<List<Goods>> queryClassifyGoods(@RequestBody JSONObject json){
+		Page page=new Page<>(Integer.parseInt(json.getString("pageno")));
+		return appGoodsService.queryClassifyGoods(page,json.getString("classifyid"));
+	}
+	
 	@ApiOperation(value="添加商品分类")
 	@PostMapping("/insertClassify")
 	public Results<Boolean> insertClassify(@RequestBody Classify classify) {

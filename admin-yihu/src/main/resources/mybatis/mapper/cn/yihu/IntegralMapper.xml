@@ -128,6 +128,33 @@
     </set>
     where Id = #{id,jdbcType=VARCHAR}
   </update>
+  <update id="updateByUseridSelective" parameterType="cn.yihu.microboot.vo.Integral">
+    update integral
+    <set>
+      <if test="total != null">
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="nowintegral != null">
+        NowIntegral = #{nowintegral,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        Money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        Creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        Updater = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.Integral">
     update integral
     set UserId = #{userid,jdbcType=VARCHAR},
@@ -151,4 +178,10 @@
     delete from integral
     where UserId = #{userid,jdbcType=VARCHAR}
   </delete>
+  <select id="selectByUserid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from integral
+    where UserId = #{userid,jdbcType=VARCHAR}
+  </select>
 </mapper>

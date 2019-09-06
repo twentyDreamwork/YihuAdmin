@@ -20,4 +20,8 @@ public interface IntegralMapper {
     int updateByUsername(String username,String appid);
     
     int deleteByUserId(String userid);
+    
+    int updateByUseridSelective(Integral record);
+    
+    Integral selectByUserid(String userid);
 }

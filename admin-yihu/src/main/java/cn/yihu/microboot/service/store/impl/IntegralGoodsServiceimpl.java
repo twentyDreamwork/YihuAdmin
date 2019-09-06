@@ -3,6 +3,7 @@ package cn.yihu.microboot.service.store.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.dao.IntegralGoodsMapper;
 import cn.yihu.microboot.service.store.IntegralGoodsService;
@@ -11,6 +12,8 @@ import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.IntegralGoods;
 
+@Service("integralGoodsService")
+@SuppressWarnings("unchecked")
 public class IntegralGoodsServiceimpl implements IntegralGoodsService{
 
 	@Autowired
