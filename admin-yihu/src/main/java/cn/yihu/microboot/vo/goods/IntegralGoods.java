@@ -66,6 +66,12 @@ public class IntegralGoods implements Serializable{
 	@ApiModelProperty("开始计时")
 	private Date timestart;
 	
+	@ApiModelProperty("结束时间")
+	private Date overtime;
+	
+	@ApiModelProperty("库存数量")
+	private Integer inventory;
+	
 	/*
 	 * public Goods(String id, String shopId, String cateId, String locaId, String
 	 * mainTitle, String subTitle,Integer integral, BigDecimal price, BigDecimal

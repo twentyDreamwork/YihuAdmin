@@ -31,10 +31,10 @@ public interface GoodsMapper extends BaseMapper<Goods>{
 	@Select("select count(*) from xe_goods where recommend=1")
     int count_recommend();
 	
-	@Select("select * from xe_goods where time=1 limit #{pageno},#{pagesize}")
+	@Select("select * from xe_goods where recommend=1 limit #{pageno},#{pagesize}")
     List<Goods> findrecommendGoodsPage(@Param("pageno")int pageno,@Param("pagesize")int pagesize);
 	
-	@Select("select count(*) from xe_goods where recommend=1")
+	@Select("select count(*) from xe_goods where time=1")
     int count_time();
 	
 	@Select("select * from xe_goods where time=1 limit #{pageno},#{pagesize}")

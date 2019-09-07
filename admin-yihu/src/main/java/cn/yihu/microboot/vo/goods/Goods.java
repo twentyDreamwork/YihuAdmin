@@ -62,6 +62,11 @@ public class Goods implements Serializable{
 	@ApiModelProperty("开始计时")
 	private Date timestart;
 	
+	@ApiModelProperty("结束时间")
+	private Date overtime;
+	
+	@ApiModelProperty("库存数量")
+	private Integer inventory;
 	
 	
 	/*

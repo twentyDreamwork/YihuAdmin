@@ -24,7 +24,7 @@ public class Carousel implements Serializable{
 	private String goodsId;
 	
 	@ApiModelProperty("图片")
-	private String imgs;
+	private String goodsImg;
 	
 	@ApiModelProperty("类型 1 外链 2 内跳转")
 	private Integer type;
