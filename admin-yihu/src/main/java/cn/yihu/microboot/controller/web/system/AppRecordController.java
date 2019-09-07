@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +46,7 @@ public class AppRecordController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/insertrecord", method = RequestMethod.GET)
+	//@RequestMapping(value = "/insertrecord", method = RequestMethod.GET)
 	public JSONObject insertrecord(String userid,String appid,String username) {
 		JSONObject res_json = new JSONObject();
 		UUIDTool uuid=new UUIDTool();
@@ -73,8 +75,9 @@ public class AppRecordController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/deleterecord", method = RequestMethod.GET)
-	public JSONObject deleterecord(String id) {
+	@ApiOperation(value="pc端删除app下载日志")
+	@DeleteMapping("/deleterecord/{id}")
+	public JSONObject deleterecord(@PathVariable("id")String id) {
 		JSONObject res_json = new JSONObject();
 		int result = apprecordService.deleteAppRecord(id);
 		if(result==0) {
@@ -89,7 +92,7 @@ public class AppRecordController extends AbstractBaseController{
 		return res_json;
 	}
 	
-	@RequestMapping(value = "/updaterecord", method = RequestMethod.GET)
+	//@RequestMapping(value = "/updaterecord", method = RequestMethod.GET)
 	public JSONObject updaterecord(String id,String userid,String appid,String username) {
 		JSONObject res_json = new JSONObject();
 		DownloadRecord dlr=new DownloadRecord();

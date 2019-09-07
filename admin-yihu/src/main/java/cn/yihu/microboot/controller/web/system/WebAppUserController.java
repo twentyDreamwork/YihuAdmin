@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,9 +53,9 @@ public class WebAppUserController extends AbstractBaseController{
 	}
 	
 	//@RequestMapping(value = "/insertappuser", method = RequestMethod.GET)
-	public JSONObject insertappuser(String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String creater) {
+	public JSONObject insertappuser(@RequestBody AppUser appuser) {
 		JSONObject res_json=new JSONObject();
-		int result=userservice.insertAppUser(wxid, username, password, phone, platform, MachineCode, IP, creater);
+		int result=userservice.insertAppUser(appuser);
 		if(result==0) {
 			res_json.put("result", result);
 			res_json.put("code", 200);
@@ -80,11 +81,11 @@ public class WebAppUserController extends AbstractBaseController{
 	}
 	
 	@ApiOperation(value="pc端更新app用户信息")
-	@PutMapping("/updateappuser")
+	@PostMapping("/updateappuser")
 	//public JSONObject updateappuser(String id,String wxid,String username,String password,String phone, String , String MachineCode, String IP,String updater) {
-	public JSONObject updateappuser(@RequestBody JSONObject json) {
+	public JSONObject updateappuser(@RequestBody AppUser appuser) {
 	    JSONObject res_json = new JSONObject();
-		int result=userservice.updateAppUser(json.getString("id"), json.getString("wxid"), json.getString("username"), json.getString("password"), json.getString("phone"), json.getString("platform"), json.getString("MachineCode"), json.getString("IP"),json.getString("updater"));
+		int result=userservice.updateAppUser(appuser);
 		if(result==0) {
 			res_json.put("result", result);
 			res_json.put("code", 200);

@@ -15,8 +15,8 @@ import io.swagger.annotations.Api;
 
 //分类
 @Api(value="web分类管理")
-@RestController
-@RequestMapping("/store/classify")
+//@RestController
+//@RequestMapping("/store/classify")
 public class WebClassifyController {
 
 	@Resource

@@ -134,24 +134,23 @@ public class AppUserServiceImpl implements AppUserService{
 
 
 	@Override
-	public int insertAppUser(String wxid, String username, String password, String phone, String platform,
-			String MachineCode, String IP, String creater) {
+	public int insertAppUser(AppUser user) {
 		// TODO Auto-generated method stub
 		Date date=DateTime.now().toDate();
 		UUIDTool uuid=new UUIDTool();
-		AppUser user=new AppUser();
+		//AppUser user=new AppUser();
 		user.setId(uuid.getUUID());
-		user.setWxid(wxid);
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setPhone(phone);
-		user.setPlatform(Integer.parseInt(platform));
-		user.setMachinecode(MachineCode);
-		user.setIp(IP);
+		//user.setWxid(wxid);
+		//user.setUsername(username);
+		//user.setPassword(password);
+		//user.setPhone(phone);
+		//user.setPlatform(Integer.parseInt(platform));
+		//user.setMachinecode(MachineCode);
+		//user.setIp(IP);
 		user.setCreatetime(date);
 		user.setUpdatetime(date);
-		user.setCreater(creater);
-		user.setUpdater(creater);
+		//user.setCreater(creater);
+		//user.setUpdater(creater);
 		int result=usermapper.insertSelective(user);
 		return result;
 	}
@@ -165,21 +164,17 @@ public class AppUserServiceImpl implements AppUserService{
 
 
 	@Override
-	public int updateAppUser(String id, String wxid, String username, String password, String phone, String platform,
-			String MachineCode, String IP, String updater) {
+	public int updateAppUser(AppUser user) {
 		// TODO Auto-generated method stub
 		Date date=DateTime.now().toDate();
-		AppUser user=new AppUser();
-		user.setId(id);
-		user.setWxid(wxid);
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setPhone(phone);
-		user.setPlatform(Integer.parseInt(platform));
-		user.setMachinecode(MachineCode);
-		user.setIp(IP);
+		/*
+		 * AppUser user=new AppUser(); user.setId(id); user.setWxid(wxid);
+		 * user.setUsername(username); user.setPassword(password); user.setPhone(phone);
+		 * user.setPlatform(Integer.parseInt(platform));
+		 * user.setMachinecode(MachineCode); user.setIp(IP);
+		 */
 		user.setUpdatetime(date);
-		user.setUpdater(updater);
+		//user.setUpdater(updater);
 		int result=usermapper.updateByPrimaryKeySelective(user);
 		return result;
 	}

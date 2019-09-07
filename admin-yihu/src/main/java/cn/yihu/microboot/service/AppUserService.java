@@ -26,12 +26,16 @@ public interface AppUserService {
 	
     public List<AppUser> findAllAppUserPage(Page page,String sort);
 	
-	public int insertAppUser(String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String creater);
+	//public int insertAppUser(String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String creater);
 	
+    public int insertAppUser(AppUser appuser);
+    
 	public int deleteAppUser(String id);
 	
-	public int updateAppUser(String id,String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String updater);
+	//public int updateAppUser(String id,String wxid,String username,String password,String phone, String platform, String MachineCode, String IP,String updater);
     
+	public int updateAppUser(AppUser appuser);
+	
 	public int count();
 	
 }

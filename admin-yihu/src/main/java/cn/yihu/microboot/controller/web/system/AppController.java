@@ -51,10 +51,10 @@ public class AppController extends AbstractBaseController{
 	@ApiOperation(value="pc端添加app信息")
 	@PostMapping("/insertapp")
 	//public JSONObject insertapp(String name,String icon,String platform,String appPackage,String link,String type,String integral,String downloadNum,String remark) {
-	public JSONObject insertapp(@RequestBody JSONObject json) {
+	public JSONObject insertapp(@RequestBody APP app) {
 		JSONObject res_json = new JSONObject();
 		UUIDTool uuid=new UUIDTool();
-		APP app=new APP(uuid.getUUID(), json.getString("name"), json.getString("icon"), Integer.parseInt(json.getString("platform")), json.getString("appPackage"), json.getString("link"), Integer.parseInt(json.getString("type")), json.getString("integral"), Integer.parseInt(json.getString("downloadNum")), json.getString("remark")); 
+		//APP app=new APP(uuid.getUUID(), json.getString("name"), json.getString("icon"), Integer.parseInt(json.getString("platform")), json.getString("appPackage"), json.getString("link"), Integer.parseInt(json.getString("type")), json.getString("integral"), Integer.parseInt(json.getString("downloadNum")), json.getString("remark")); 
 		int result=appSrvice.insertApp(app);
 		if(result==0) {
 			res_json.put("result", result);
@@ -87,11 +87,11 @@ public class AppController extends AbstractBaseController{
 	}
 	
 	@ApiOperation(value="pc端更新app信息")
-	@PutMapping("/updateapp")
-	public JSONObject updateapp(@RequestBody JSONObject json) {
+	@PostMapping("/updateapp")
+	public JSONObject updateapp(@RequestBody APP app) {
 		JSONObject res_json = new JSONObject();
 		//APP app=new APP(id, name, icon, Integer.parseInt(platform), appPackage, link, Integer.parseInt(type), integral, Integer.parseInt(downloadNum), remark);
-		APP app=(APP)JSONObject.toBean(json, APP.class);
+		//APP app=(APP)JSONObject.toBean(json, APP.class);
 		int result = appSrvice.updateApp(app);
 		if(result==0) {
 			res_json.put("result", result);
