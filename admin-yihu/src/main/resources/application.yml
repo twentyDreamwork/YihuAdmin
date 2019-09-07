@@ -20,3 +20,11 @@ spring:
       initial-size: 5                               # 初始化提供的连接数
       max-total: 5                                  # 最大的连接数
       max-wait-millis: 200                          # 等待连接获取的最大超时时间
+  resources:
+    static-locations: file:/home/images
+
+OSS:    
+ endpoint: oss-cn-beijing.aliyuncs.com
+ accessKeyId: LTAI4Fs3cRyRg8BDGxGE28jD
+ accessKeySecret: rpSDKfWczgGiaXTAHfPm4vkUDGGb0F
+ bucketName: yang610463.oss-cn-beijing.aliyuncs.com
