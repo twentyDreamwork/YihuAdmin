@@ -49,10 +49,6 @@ public class DownloadController {
 	//应用下载列表
 	@ApiOperation(value="应用下载列表")
 	@PostMapping("/downloadlist")
-	@ApiImplicitParams({
-        @ApiImplicitParam(paramType="query", name = "platform", value = "平台", required = true, dataType = "String"),
-        @ApiImplicitParam(paramType="query", name = "pageno", value = "页码", required = true, dataType = "String")
-    })
 	public JSONObject Downloadlist(@RequestBody JSONObject now_json) {
 		JSONObject res_json = new JSONObject();
 		//JSONObject now_json = new JSONObject();
@@ -68,11 +64,11 @@ public class DownloadController {
 		 */
 		
 		Page page=downloadService.downloadlist(now_json);
-		List<String> recordlist=downloadService.downloadrecordlist(now_json);
+		//List<String> recordlist=downloadService.downloadrecordlist(now_json);
 		res_json=JSONObject.fromObject(page);
 		res_json.put("code", 200);
 		res_json.put("msg", "成功");
-		res_json.put("record", recordlist);
+		//res_json.put("record", recordlist);
 		return res_json;
 	}
 	
