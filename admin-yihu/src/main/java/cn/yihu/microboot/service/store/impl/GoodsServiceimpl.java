@@ -29,7 +29,7 @@ public class GoodsServiceimpl implements GoodsService {
 		// TODO Auto-generated method stub
 		UUIDTool uuidtool=new UUIDTool();
 		goods.setId(uuidtool.getUUID());
-		return goodsmapper.insert(goods)> 0 ? Results.resultSucc() : Results.resultErr();
+		return goodsmapper.insertSelective(goods)> 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
 	@Override
