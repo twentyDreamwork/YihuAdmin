@@ -83,5 +83,15 @@ public class DownloadServiceImpl implements DownloadService{
 		return record_list;
 	}
 
+	@Override
+	public Page getrecordlist(JSONObject json) {
+		// TODO Auto-generated method stub
+		AppUser user=usermapper.selectByWxid(json.getString("wxid"));
+		Page page=new Page<>(json.getInt("pageno"));
+		page.setTotalCount(downloadrecordmapper.recorduseridcount(user.getId()));
+		page.setResultList(downloadrecordmapper.selectbyuserid(user.getId(), (page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
+		return page;
+	}
+
 	
 }

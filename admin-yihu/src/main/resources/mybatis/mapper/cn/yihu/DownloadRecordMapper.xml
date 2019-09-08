@@ -139,4 +139,12 @@
     from download_record
     limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
   </select>
+<!--   <select id="selectbyuserid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT dr.`id`,dr.`createtime`,a.`Name`,a.`Integral` 
+    FROM download_record AS dr 
+     LEFT JOIN app AS a
+     ON dr.`appid`=a.`id` 
+    WHERE dr.`userid`=#{param1,jdbcTypc=VARCHAR} 
+    limit #{param2,jdbcType=INTEGER},#{param3,jdbcType=INTEGER}
+  </select> -->
 </mapper>

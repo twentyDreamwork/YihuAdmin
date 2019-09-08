@@ -16,6 +16,9 @@ import cn.yihu.microboot.service.IntegralService;
 import cn.yihu.microboot.service.InvitedUserService;
 import cn.yihu.microboot.service.api.ApiCheckService;
 import cn.yihu.microboot.service.api.DownloadService;
+import cn.yihu.microboot.util.CommonCode;
+import cn.yihu.microboot.util.Results;
+import cn.yihu.microboot.vo.DownloadRecord;
 import cn.yihu.microboot.vo.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,7 +50,6 @@ public class DownloadController {
 	@ApiOperation(value="应用下载列表")
 	@PostMapping("/downloadlist")
 	@ApiImplicitParams({
-        @ApiImplicitParam(paramType="query", name = "unionid", value = "微信id", required = true, dataType = "String"),
         @ApiImplicitParam(paramType="query", name = "platform", value = "平台", required = true, dataType = "String"),
         @ApiImplicitParam(paramType="query", name = "pageno", value = "页码", required = true, dataType = "String")
     })
@@ -75,7 +77,7 @@ public class DownloadController {
 	}
 	
 	//应用下载记录
-	@ApiOperation("应用下载记录")
+	@ApiOperation("应用下载记录插入")
 	@PostMapping("/downloadrecord")
 	@ApiImplicitParams({
         @ApiImplicitParam(paramType="query", name = "unionid", value = "微信id", required = true, dataType = "String"),
@@ -104,4 +106,12 @@ public class DownloadController {
 		return res_json;
 	}
 	
+	//下载记录列表
+	//app名、app积分
+	@ApiOperation("应用下载记录列表")
+	@PostMapping("/downloadrecordlist")
+	public Page recordlist(@RequestBody JSONObject json){
+		//String wxid,String pageno
+		return downloadService.getrecordlist(json);
+	}	
 }

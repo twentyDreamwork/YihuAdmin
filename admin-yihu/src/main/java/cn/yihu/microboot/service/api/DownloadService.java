@@ -13,4 +13,6 @@ public interface DownloadService {
 	public List<String> downloadrecordlist(JSONObject json);
 	
 	public int downloadrecord(JSONObject json);
+	
+	public Page getrecordlist(JSONObject json);
 }
