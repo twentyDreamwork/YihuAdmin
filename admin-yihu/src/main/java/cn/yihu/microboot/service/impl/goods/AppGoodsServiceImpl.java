@@ -119,7 +119,7 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 
 	@Override
 	public Results<Boolean> insertCarousel(Carousel carousel) {
-		return carouselMapper.insert(carousel) > 0 ? Results.resultSucc() : Results.resultErr();
+		return carouselMapper.insertAllColumn(carousel) > 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
 	@Override

@@ -7,8 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.dao.APPMapper;
-import cn.yihu.microboot.dao.IntegralMapper;
-import cn.yihu.microboot.dao.InvitedUserMapper;
 import cn.yihu.microboot.service.AppService;
 import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.Page;
