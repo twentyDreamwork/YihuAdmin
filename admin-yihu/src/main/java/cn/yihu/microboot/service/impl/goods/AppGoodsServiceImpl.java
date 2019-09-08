@@ -5,16 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+
 import cn.yihu.microboot.mapper.goods.CarouselMapper;
 import cn.yihu.microboot.mapper.goods.ClassifyMapper;
 import cn.yihu.microboot.mapper.goods.GoodsMapper;
 import cn.yihu.microboot.service.goods.AppGoodsService;
+import cn.yihu.microboot.util.BeanMapper;
 import cn.yihu.microboot.util.Results;
 import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.Carousel;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.goods.Goods;
 import cn.yihu.microboot.vo.goods.res.AppIndex;
+import cn.yihu.microboot.vo.goods.res.ClassifyChild;
 
 /**
  * 商品分类实现
@@ -35,7 +39,25 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 	
 	@Override
 	public Results<List<Classify>> queryAllClassify() {
-		return Results.resultSucc(classifyMapper.queryAllClassify());
+		List<Classify> classifys = classifyMapper.queryAllClassify();
+		List<Classify> records = Lists.newArrayList();
+		for (Classify classify : classifys) {
+			if("0".equals(classify.getParentId())) {
+				List<ClassifyChild> childs = Lists.newArrayList();
+				Classify record = new Classify();
+				BeanMapper.copy(classify, record);
+				for (Classify c : classifys) {
+					if(c.getParentId().equals(String.valueOf(classify.getId()))) {
+						ClassifyChild child = new ClassifyChild();
+						BeanMapper.copy(c, child);
+						childs.add(child);
+					}
+				}
+				record.setClassifyChilds(childs);
+				records.add(record);
+			}
+		}
+		return Results.resultSucc(records);
 	}
 
 	@Override

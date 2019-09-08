@@ -1,24 +1,14 @@
-package cn.yihu.microboot.vo.goods;
+package cn.yihu.microboot.vo.goods.res;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import com.baomidou.mybatisplus.annotations.TableName;
-
-import cn.yihu.microboot.vo.goods.res.ClassifyChild;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-
-/**
- * 商品分类
- * @author Yang
- *
- */
 @Data
-@TableName("xe_classify")
-public class Classify implements Serializable {
+public class ClassifyChild implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty("id")
@@ -63,6 +53,4 @@ public class Classify implements Serializable {
 	@ApiModelProperty("更新时间")
 	private Date updateTime;
 	
-	@ApiModelProperty("下一级")
-	private List<ClassifyChild> classifyChilds;
 }

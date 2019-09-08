@@ -11,9 +11,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy      # 配置MySQL的驱动程序类
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/dreamTask?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false           # 数据库连接地址
+    url: jdbc:log4jdbc:mysql://47.75.98.77:3306/dreamTask?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false           # 数据库连接地址
     username: root                                  # 数据库用户名
-    password: Ab123456                            # 数据库连接密码
+    password: root                            # 数据库连接密码
     filters: stat,wall,log4j
     dbcp2:                                          # 进行数据库连接池的配置
       min-idle: 5                                   # 数据库连接池的最小维持连接数    
