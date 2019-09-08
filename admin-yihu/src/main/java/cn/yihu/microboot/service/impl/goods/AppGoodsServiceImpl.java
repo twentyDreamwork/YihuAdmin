@@ -129,7 +129,7 @@ public class AppGoodsServiceImpl implements AppGoodsService{
 
 	@Override
 	public Results<Boolean> delCarousel(Integer id) {
-		return carouselMapper.deleteById(id)> 0 ? Results.resultSucc() : Results.resultErr();
+		return carouselMapper.deletebyid(id)> 0 ? Results.resultSucc() : Results.resultErr();
 	}
 
 	@Override
