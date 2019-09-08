@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,26 +45,25 @@ public class DownloadController {
 	
 	//应用下载列表
 	@ApiOperation(value="应用下载列表")
-	@RequestMapping(value = "/downloadlist", method = RequestMethod.GET)
+	@PostMapping("/downloadlist")
 	@ApiImplicitParams({
         @ApiImplicitParam(paramType="query", name = "unionid", value = "微信id", required = true, dataType = "String"),
         @ApiImplicitParam(paramType="query", name = "platform", value = "平台", required = true, dataType = "String"),
         @ApiImplicitParam(paramType="query", name = "pageno", value = "页码", required = true, dataType = "String")
     })
-	public JSONObject Downloadlist(@RequestParam(value="unionid") String unionid,@RequestParam(value="platform")String platform,@RequestParam(value="pageno")String pageno) {
+	public JSONObject Downloadlist(@RequestBody JSONObject now_json) {
 		JSONObject res_json = new JSONObject();
-		JSONObject now_json = new JSONObject();
+		//JSONObject now_json = new JSONObject();
 		
-		now_json.put("wxid", unionid);
-		now_json.put("platform", platform);
-		now_json.put("pageno", pageno);
+		//now_json.put("wxid", unionid);
+		//now_json.put("platform", platform);
+		//now_json.put("pageno", pageno);
 		
 		//检验用户是否已注册
-		if(userService.check_wxid(now_json.getString("wxid"))==0) {
-			res_json.put("code", 102);
-			res_json.put("msg", "该用户未注册");
-			return res_json;
-		}
+		/*
+		 * if(userService.check_wxid(now_json.getString("wxid"))==0) {
+		 * res_json.put("code", 102); res_json.put("msg", "该用户未注册"); return res_json; }
+		 */
 		
 		Page page=downloadService.downloadlist(now_json);
 		List<String> recordlist=downloadService.downloadrecordlist(now_json);
@@ -75,24 +76,19 @@ public class DownloadController {
 	
 	//应用下载记录
 	@ApiOperation("应用下载记录")
-	@RequestMapping(value = "/downloadrecord", method = RequestMethod.GET)
+	@PostMapping("/downloadrecord")
 	@ApiImplicitParams({
         @ApiImplicitParam(paramType="query", name = "unionid", value = "微信id", required = true, dataType = "String"),
         @ApiImplicitParam(paramType="query", name = "appid", value = "应用id", required = true, dataType = "String"),
     })
-	public JSONObject DownloaRecord(String unionid,String appid) {
+	public JSONObject DownloaRecord(@RequestBody JSONObject now_json) {
 		JSONObject res_json = new JSONObject();
-		JSONObject now_json = new JSONObject();
 		
-		now_json.put("wxid", unionid);
-		now_json.put("appid", appid);
 		
-		//检验用户是否已注册
-		if(userService.check_wxid(now_json.getString("wxid"))==0) {
-			res_json.put("code", 102);
-			res_json.put("msg", "该用户未注册");
-			return res_json;
-		}
+		/*
+		 * //检验用户是否已注册 if(userService.check_wxid(now_json.getString("wxid"))==0) {
+		 * res_json.put("code", 102); res_json.put("msg", "该用户未注册"); return res_json; }
+		 */
 		
 		int result=downloadService.downloadrecord(now_json);
 		if(result==0) {

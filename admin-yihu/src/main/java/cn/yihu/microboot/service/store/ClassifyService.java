@@ -1,6 +1,9 @@
 package cn.yihu.microboot.service.store;
 
+import java.util.List;
+
 import cn.yihu.microboot.vo.Page;
+import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.store.XeClassify;
 
 public interface ClassifyService {
@@ -12,8 +15,10 @@ public interface ClassifyService {
 	
 	public int delete(String id);
 	
-	public Page select_page(Page page);
+	public List<Classify> select_page(Page page);
 	
 	public XeClassify select_one(String id);
+	
+	public int count();
 	
 }

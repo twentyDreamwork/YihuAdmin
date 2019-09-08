@@ -18,13 +18,13 @@
       <arg column="hot" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="time" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="timer" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="timestart" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="timerstart" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="overtime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="inventory" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, shop_id, cate_id, loca_id, main_title, sub_title, price, old_price, buy, goods_img,taobao_url,recommend,hot,time,timer,timestart,overtime,inventory
+    id, shop_id, cate_id, loca_id, main_title, sub_title, price, old_price, buy, goods_img,taobao_url,recommend,hot,time,timer,timerstart,overtime,inventory
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -40,12 +40,12 @@
     insert into xe_goods (id, shop_id, cate_id, 
       loca_id, main_title, sub_title, 
       price, old_price, buy, 
-      goods_img,taobao_url,recommend,hot,time,timer,timestart)
+      goods_img,taobao_url,recommend,hot,time,timer,timerstart)
     values (#{id,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}, #{cateId,jdbcType=VARCHAR}, 
       #{locaId,jdbcType=VARCHAR}, #{mainTitle,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, 
       #{price,jdbcType=DECIMAL}, #{oldPrice,jdbcType=DECIMAL}, #{buy,jdbcType=INTEGER}, 
       #{goodsImg,jdbcType=VARCHAR},#{taobaoUrl,jdbcType=VARCHAR},#{recommend,jdbcType=INTEGER},
-      #{hot,jdbcType=INTEGER},#{time,jdbcType=INTEGER},#{timer,jdbcType=INTEGER},#{timestart,jdbcType=TIMESTAMP},
+      #{hot,jdbcType=INTEGER},#{time,jdbcType=INTEGER},#{timer,jdbcType=INTEGER},#{timerstart,jdbcType=TIMESTAMP},
       #{overtime,jdbcType=TIMESTAMP},#{inventory,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.store.XeGoods">
@@ -96,8 +96,8 @@
       <if test="timer != null">
         timer,
       </if>
-      <if test="timestart != null">
-        timestart,
+      <if test="timerstart != null">
+        timerstart,
       </if>
       <if test="overtime != null">
         overtime,
@@ -152,8 +152,8 @@
       <if test="timer != null">
         #{timer,jdbcType=INTEGER},
       </if>
-      <if test="timestart != null">
-        #{timestart,jdbcType=TIMESTAMP}
+      <if test="timerstart != null">
+        #{timerstart,jdbcType=TIMESTAMP}
       </if>
       <if test="overtime != null">
         #{overtime,jdbcType=TIMESTAMP}
@@ -208,8 +208,8 @@
       <if test="timer != null">
         timer = #{timer,jdbcType=INTEGER},
       </if>
-      <if test="timestart != null">
-        timestart = #{timestart,jdbcType=TIMESTAMP},
+      <if test="timerstart != null">
+        timerstart = #{timerstart,jdbcType=TIMESTAMP},
       </if>
       <if test="overtime != null">
         overtime = #{overtime,jdbcType=TIMESTAMP},
@@ -236,7 +236,7 @@
       hot = #{hot,jdbcType=INTEGER},
       time = #{time,jdbcType=INTEGER},
       timer = #{timer,jdbcType=INTEGER},
-      timestart = #{timestart,jdbcType=TIMESTAMP},
+      timerstart = #{timerstart,jdbcType=TIMESTAMP},
       overtime = #{overtime,jdbcType=TIMESTAMP},
       inventory = #{inventory,jdbcType=INTEGER},
     where id = #{id,jdbcType=VARCHAR}
@@ -247,12 +247,12 @@
     from xe_goods
   </select>
   
-  <select id="findpage" parameterType="java.util.Map" resultMap="BaseResultMap">
+<!--   <select id="findpage" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from xe_goods
     limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
-  </select>
+  </select> -->
   
   
   <select id="findall" resultMap="BaseResultMap">

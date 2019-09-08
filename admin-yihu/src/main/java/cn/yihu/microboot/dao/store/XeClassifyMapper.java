@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.store.XeClassify;
 
 @Mapper
@@ -25,4 +26,6 @@ public interface XeClassifyMapper {
     List<XeClassify> findpage(int pageno,int pagesize);
     
     List<XeClassify> findall();
+    
+    List<Classify> selectpage(int pageno,int pagesie);
 }

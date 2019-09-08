@@ -1,6 +1,7 @@
 package cn.yihu.microboot.service.store.impl;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import cn.yihu.microboot.service.store.ClassifyService;
 import cn.yihu.microboot.util.DateTime;
 import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.Page;
+import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.store.XeClassify;
 
 @Service
@@ -45,18 +47,21 @@ public class ClassifyServiceimpl implements ClassifyService {
 	}
 
 	@Override
-	public Page select_page(Page page) {
+	public List<Classify> select_page(Page page) {
 		// TODO Auto-generated method stub
-		int count=classifymapper.count_all();
-		page.setTotalCount(count);
-		page.setResultList(classifymapper.findpage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize()));
-		return page;
+		return classifymapper.selectpage((page.getPageNo()-1)*page.getPageSize(),page.getPageSize());
 	}
 
 	@Override
 	public XeClassify select_one(String id) {
 		// TODO Auto-generated method stub
 		return classifymapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return classifymapper.count_all();
 	}
 
 }
