@@ -14,6 +14,8 @@ import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.store.XeClassify;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Service
 public class ClassifyServiceimpl implements ClassifyService {
@@ -22,22 +24,26 @@ public class ClassifyServiceimpl implements ClassifyService {
 	private XeClassifyMapper classifymapper;
 	
 	@Override
-	public int add(String classifyname, String parentid, int depth, int priority, String keywords, String title,
-			String description) {
+	public int add(Classify classify) {
 		// TODO Auto-generated method stub
 		UUIDTool uuidtool=new UUIDTool();
 		DateTime datetime=new DateTime();
 		Timestamp date=datetime.now().toSqlTimestamp();
-		return classifymapper.insertSelective(new XeClassify(uuidtool.getUUID(), classifyname, parentid, depth, 1, priority, keywords, title, description, null, date, null, date));
+		classify.setId(uuidtool.getUUID());
+		classify.setCreateTime(date);
+		classify.setUpdateTime(date);
+		return classifymapper.insertSelective(classify);
+		//return classifymapper.insertSelective(new XeClassify(uuidtool.getUUID(), classifyname, parentid, depth, 1, priority, keywords, title, description, null, date, null, date));
 	}
 
 	@Override
-	public int update(String id, String classifyname, String parentid, int depth, int status, int priority,
-			String keywords, String title, String description) {
+	public int update(Classify classify) {
 		// TODO Auto-generated method stub
 		DateTime datetime=new DateTime();
 		Timestamp date=datetime.now().toSqlTimestamp();
-		return classifymapper.updateByPrimaryKeySelective(new XeClassify(id, classifyname, parentid, depth, status, priority, keywords, title, description, null, null, null, date));
+		classify.setUpdateTime(date);
+		return classifymapper.updateByPrimaryKeySelective(classify);
+		//return classifymapper.updateByPrimaryKeySelective(new Classify(id, classifyname, parentid, depth, status, priority, keywords, title, description, null, null, null, date));
 	}
 
 	@Override
@@ -53,7 +59,7 @@ public class ClassifyServiceimpl implements ClassifyService {
 	}
 
 	@Override
-	public XeClassify select_one(String id) {
+	public Classify select_one(String id) {
 		// TODO Auto-generated method stub
 		return classifymapper.selectByPrimaryKey(id);
 	}
@@ -62,6 +68,36 @@ public class ClassifyServiceimpl implements ClassifyService {
 	public int count() {
 		// TODO Auto-generated method stub
 		return classifymapper.count_all();
+	}
+
+	@Override
+	public JSONArray select_all() {
+		// TODO Auto-generated method stub
+		List<Classify> clist1=classifymapper.findfirst();
+		List<Classify> clist2=classifymapper.findsecond();
+		JSONObject c1=new JSONObject();
+		JSONObject c2=new JSONObject();
+		JSONArray ca=new JSONArray();
+		JSONArray cl=new JSONArray();
+		for(Classify classify1:clist1) {
+			ca=new JSONArray();
+			c2=new JSONObject();
+			for(Classify classify2:clist2) {
+				if(classify1.getId().equals(classify2.getParentId())) {
+					c2.put("id", classify2.getId());
+					c2.put("name", classify2.getClassifyName());
+					c2.put("parentId", classify2.getParentId());
+				}else {
+					continue;
+				}
+				ca.add(c2);
+			}
+			c1.put("id", classify1.getId());
+			c1.put("name", classify1.getId());
+			c1.put("child", ca);
+			cl.add(c1);
+		}
+		return cl;
 	}
 
 }

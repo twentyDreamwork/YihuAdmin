@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.yihu.microboot.dao.store.XeClassifyMapper">
-  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.store.XeClassify">
+  <resultMap id="BaseResultMap" type="cn.yihu.microboot.vo.goods.Classify">
     <constructor>
       <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="classify_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="parent_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="icons" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="depth" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="priority" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -19,7 +20,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, classify_name, parent_id, depth, status, priority, keywords, title, description, 
+    id, classify_name, parent_id, icons, depth, status, priority, keywords, title, description, 
     creater, create_time, updater, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -32,19 +33,19 @@
     delete from xe_classify
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.yihu.microboot.vo.store.XeClassify">
-    insert into xe_classify (id, classify_name, parent_id, 
+  <insert id="insert" parameterType="cn.yihu.microboot.vo.goods.Classify">
+    insert into xe_classify (id, classify_name, parent_id, icons,
       depth, status, priority, 
       keywords, title, description, 
       creater, create_time, updater, 
       update_time)
-    values (#{id,jdbcType=VARCHAR}, #{classifyName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{classifyName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{icons,jdbcType=VARCHAR},
       #{depth,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{priority,jdbcType=INTEGER}, 
       #{keywords,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{creater,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.store.XeClassify">
+  <insert id="insertSelective" parameterType="cn.yihu.microboot.vo.goods.Classify">
     insert into xe_classify
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -55,6 +56,9 @@
       </if>
       <if test="parentId != null">
         parent_id,
+      </if>
+      <if test="icons != null">
+        icons,
       </if>
       <if test="depth != null">
         depth,
@@ -97,6 +101,9 @@
       <if test="parentId != null">
         #{parentId,jdbcType=VARCHAR},
       </if>
+      <if test="icons != null">
+        #{icons,jdbcType=VARCHAR},
+      </if>
       <if test="depth != null">
         #{depth,jdbcType=INTEGER},
       </if>
@@ -129,7 +136,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.store.XeClassify">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yihu.microboot.vo.goods.Classify">
     update xe_classify
     <set>
       <if test="classifyName != null">
@@ -137,6 +144,9 @@
       </if>
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="icons != null">
+        icons = #{icons,jdbcType=VARCHAR},
       </if>
       <if test="depth != null">
         depth = #{depth,jdbcType=INTEGER},
@@ -171,10 +181,11 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.store.XeClassify">
+  <update id="updateByPrimaryKey" parameterType="cn.yihu.microboot.vo.goods.Classify">
     update xe_classify
     set classify_name = #{classifyName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=VARCHAR},
+      icons = #{icons,jdbcType=VARCHAR},
       depth = #{depth,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       priority = #{priority,jdbcType=INTEGER},
@@ -205,5 +216,19 @@
     select 
     <include refid="Base_Column_List" />
     from xe_classify
+  </select>
+  
+   <select id="findfirst" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_classify
+    where depth=1 and status=1
+  </select>
+  
+  <select id="findsecond" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xe_classify
+    where depth=2 and status=1
   </select>
 </mapper>

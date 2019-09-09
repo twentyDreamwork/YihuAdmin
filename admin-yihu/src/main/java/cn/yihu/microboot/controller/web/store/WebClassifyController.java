@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +21,7 @@ import cn.yihu.microboot.vo.Page;
 import cn.yihu.microboot.vo.goods.Classify;
 import cn.yihu.microboot.vo.store.XeClassify;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -31,9 +36,11 @@ public class WebClassifyController {
 	
 	// 添加
 	//@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public Results add(String classifyname,String parentid,String depth,String priority,String keywords,String title,String description) {
+	@ApiOperation(value="pc端添加分类")
+	@PostMapping("/add")
+	public Results add(@RequestBody Classify classify) {
 		try {
-			int i=classifyService.add(classifyname, parentid, Integer.parseInt(depth), Integer.parseInt(priority), keywords, title, description);
+			int i=classifyService.add(classify);
 			if(i==0) {
 				new Results(CommonCode.FAIL);
 			}
@@ -49,9 +56,11 @@ public class WebClassifyController {
 
 	// 修改
 	//@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public Results update(String id,String classifyname,String parentid,String depth,String status,String priority,String keywords,String title,String description) {
+	@ApiOperation(value="pc端更新分类")
+	@PostMapping("/update")
+	public Results update(@RequestBody Classify classify) {
 		try {
-			int i=classifyService.update(id,classifyname, parentid, Integer.parseInt(depth), Integer.parseInt(status), Integer.parseInt(priority), keywords, title, description);
+			int i=classifyService.update(classify);
 			if(i==0) {
 				new Results(CommonCode.FAIL);
 			}
@@ -67,7 +76,9 @@ public class WebClassifyController {
 
 	// 删除
 	//@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public Results delete(String id) {
+	@ApiOperation(value="pc端删除分类")
+	@DeleteMapping("/delete/{id}")
+	public Results delete(@PathVariable("id")String id) {
 		int i=classifyService.delete(id);
 		if(i==0) {
 			new Results(CommonCode.FAIL);
@@ -76,6 +87,7 @@ public class WebClassifyController {
 	}
 
 	// 查询
+	@ApiOperation(value="pc端分类页面")
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
 	public JSONObject select_page(String pageno,String size) {
 		JSONObject res_json = new JSONObject();
@@ -88,9 +100,16 @@ public class WebClassifyController {
 		return res_json;
 	}
 	
+	//查询全部分类
+	@ApiOperation(value="pc端查询所有分类")
+	@RequestMapping(value = "/allclassify", method = RequestMethod.GET)
+	public JSONArray selectall() {
+		return classifyService.select_all();
+	}
+	
 	//单一查询
 	@RequestMapping(value = "/one", method = RequestMethod.GET)
 	public Results select_one(String id) {
-		return new Results<XeClassify>(CommonCode.SUCCESS,classifyService.select_one(id));
+		return new Results<Classify>(CommonCode.SUCCESS,classifyService.select_one(id));
 	} 	
 }

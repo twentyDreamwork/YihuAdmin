@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import cn.yihu.microboot.dao.APPMapper;
 import cn.yihu.microboot.service.AppService;
+import cn.yihu.microboot.util.UUIDTool;
 import cn.yihu.microboot.vo.APP;
 import cn.yihu.microboot.vo.Page;
 
@@ -29,8 +30,9 @@ public class AppServiceImpl implements AppService{
 	@Override
 	public int insertApp(APP app) {
 		// TODO Auto-generated method stub
-		
-		return appmapper.insert(app);
+		UUIDTool uuidtool=new UUIDTool();
+		app.setId(uuidtool.getUUID());
+		return appmapper.insertSelective(app);
 	}
 
 	@Override

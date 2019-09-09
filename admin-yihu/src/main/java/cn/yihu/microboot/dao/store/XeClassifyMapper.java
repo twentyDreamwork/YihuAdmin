@@ -11,21 +11,25 @@ import cn.yihu.microboot.vo.store.XeClassify;
 public interface XeClassifyMapper {
     int deleteByPrimaryKey(String id);
 
-    int insert(XeClassify record);
+    int insert(Classify record);
 
-    int insertSelective(XeClassify record);
+    int insertSelective(Classify record);
 
-    XeClassify selectByPrimaryKey(String id);
+    Classify selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(XeClassify record);
+    int updateByPrimaryKeySelective(Classify record);
 
-    int updateByPrimaryKey(XeClassify record);
+    int updateByPrimaryKey(Classify record);
     
     int count_all();
     
-    List<XeClassify> findpage(int pageno,int pagesize);
+    List<Classify> findpage(int pageno,int pagesize);
     
-    List<XeClassify> findall();
+    List<Classify> findall();
     
     List<Classify> selectpage(int pageno,int pagesie);
+    
+    List<Classify> findfirst();
+    
+    List<Classify> findsecond();
 }

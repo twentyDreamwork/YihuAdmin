@@ -65,4 +65,28 @@ public class Classify implements Serializable {
 	
 	@ApiModelProperty("下一级")
 	private List<ClassifyChild> classifyChilds;
+	
+	public Classify() {
+		super();
+	}
+	
+	public Classify(String id,String classifyName,String parentId,String icons,Integer depth,Integer status,
+	Integer priority,String keywords,String title,String description,String creater,Date createTime,String updater,
+	Date updateTime) {
+		this.id=id;
+		this.classifyName=classifyName;
+		this.parentId=parentId;
+		this.icons=icons;
+		this.depth=depth;
+		this.status=status;
+		this.priority=priority;
+		this.keywords=keywords;
+		this.title=title;
+		this.description=description;
+		this.creater=creater;
+		this.createTime=createTime;
+		this.updater=updater;
+		this.updateTime=updateTime;
+	}
+	
 }
