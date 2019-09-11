@@ -85,16 +85,16 @@ public class ClassifyServiceimpl implements ClassifyService {
 			for(Classify classify2:clist2) {
 				if(classify1.getId().equals(classify2.getParentId())) {
 					c2.put("id", classify2.getId());
-					c2.put("name", classify2.getClassifyName());
-					c2.put("parentId", classify2.getParentId());
+					c2.put("label", classify2.getClassifyName());
+					c2.put("children", classify2.getParentId());
 				}else {
 					continue;
 				}
 				ca.add(c2);
 			}
 			c1.put("id", classify1.getId());
-			c1.put("name", classify1.getId());
-			c1.put("child", ca);
+			c1.put("label", classify1.getClassifyName());
+			c1.put("children", ca);
 			cl.add(c1);
 		}
 		return cl;

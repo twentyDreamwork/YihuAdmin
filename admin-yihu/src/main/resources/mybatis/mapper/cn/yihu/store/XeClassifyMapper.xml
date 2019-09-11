@@ -211,6 +211,16 @@
     limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
   </select>
   
+  <select id="selectpage" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT 
+    c1.id, c1.classify_name, c2.classify_name as parent_id, c1.icons, c1.depth, c1.status, c1.priority, c1.keywords, c1.title, c1.description, 
+    c1.creater, c1.create_time, c1.updater, c1.update_time 
+    FROM xe_classify AS c1 
+      LEFT JOIN xe_classify AS c2 
+      ON c1.`parent_id`=c2.`id`
+    limit #{param1,jdbcType=INTEGER},#{param2,jdbcType=INTEGER}
+  </select>
+  
   
   <select id="findall" resultMap="BaseResultMap">
     select 

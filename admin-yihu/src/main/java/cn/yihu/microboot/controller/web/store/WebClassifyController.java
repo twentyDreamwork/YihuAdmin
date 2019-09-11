@@ -89,10 +89,10 @@ public class WebClassifyController {
 	// 查询
 	@ApiOperation(value="pc端分类页面")
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public JSONObject select_page(String pageno,String size) {
+	public JSONObject select_page(int pageno,int size) {
 		JSONObject res_json = new JSONObject();
 		int count = classifyService.count();
-		Page page=new Page<>(Integer.parseInt(pageno),Integer.parseInt(size),count);
+		Page page=new Page<>(pageno,size,count);
 		List<Classify> loglist = classifyService.select_page(page);
 		JSONArray jsonarray=JSONArray.fromObject(loglist, new JSONInitialize().JSONDateConfig());
 		res_json.put("content", jsonarray);
