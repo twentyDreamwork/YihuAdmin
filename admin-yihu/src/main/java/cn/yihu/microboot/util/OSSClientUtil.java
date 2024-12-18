@@ -31,9 +31,7 @@ import com.aliyun.oss.model.PutObjectResult;
 public class OSSClientUtil {
 
 	public static final Logger logger = LoggerFactory.getLogger(OSSClientUtil.class);
-	private static String endpoint = "oss-cn-beijing.aliyuncs.com";
-	private static String accessKeyId = "LTAI4Fs3cRyRg8BDGxGE28jD";
-	private static String accessKeySecret = "rpSDKfWczgGiaXTAHfPm4vkUDGGb0F";
+	
 	private static String bucketName = "yihuapp";
 	
 	private static String bucketDomain = "https://yihuapp.oss-cn-beijing.aliyuncs.com";
