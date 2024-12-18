@@ -23,8 +23,3 @@ spring:
   resources:
     static-locations: file:/home/images
 
-OSS:    
- endpoint: oss-cn-beijing.aliyuncs.com
- accessKeyId: LTAI4Fs3cRyRg8BDGxGE28jD
- accessKeySecret: rpSDKfWczgGiaXTAHfPm4vkUDGGb0F
- bucketName: yang610463.oss-cn-beijing.aliyuncs.com
